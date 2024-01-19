@@ -3,7 +3,7 @@ class CreatedByModel {
   String creditId;
   String name;
   int gender;
-  dynamic profilePath;
+  String profilePath;
 
   CreatedByModel({
     required this.id,

@@ -1,66 +1,83 @@
-
 import 'package:ditonton/domain/entities/genre.dart';
-import 'package:ditonton/domain/entities/tv/last_episode_to_air.dart';
-import 'package:ditonton/domain/entities/tv/season.dart';
+import 'package:ditonton/domain/entities/tv/created_by.dart';
+import 'package:ditonton/domain/entities/tv/network.dart';
+import 'package:ditonton/domain/entities/tv/season_model.dart';
 import 'package:equatable/equatable.dart';
 
-class TvDetail extends Equatable {
+class TvDetail extends Equatable{
+  bool adult;
+  String backdropPath;
+  List<CreatedBy> createdBy;
+  DateTime firstAirDate;
+  List<Genre> genres;
+  String homepage;
+  int id;
+  bool inProduction;
+  DateTime lastAirDate;
+  String name;
+  List<Network> networks;
+  int numberOfEpisodes;
+  int numberOfSeasons;
+  String originalLanguage;
+  String overview;
+  double popularity;
+  String posterPath;
+  List<Season> seasons;
+  String status;
+  String tagline;
+  String type;
+  double voteAverage;
+  int voteCount;
+
   TvDetail({
+    required this.adult,
     required this.backdropPath,
-    required this.lastEpisodeToAir,
-    required this.name,
-    required this.episodeRunTime,
+    required this.createdBy,
     required this.firstAirDate,
-    required this.nextEpisodeToAir,
+    required this.genres,
+    required this.homepage,
+    required this.id,
+    required this.inProduction,
+    required this.lastAirDate,
+    required this.name,
+    required this.networks,
     required this.numberOfEpisodes,
     required this.numberOfSeasons,
-    required this.originCountry,
-    required this.genres,
-    required this.seasons,
-    required this.id,
-    required this.originalName,
+    required this.originalLanguage,
     required this.overview,
+    required this.popularity,
     required this.posterPath,
+    required this.seasons,
+    required this.status,
+    required this.tagline,
+    required this.type,
     required this.voteAverage,
     required this.voteCount,
   });
-
-  final String? backdropPath;
-  final LastEpisodeToAir lastEpisodeToAir;
-  final String name;
-  final List<dynamic> episodeRunTime;
-  final String firstAirDate;
-  final dynamic nextEpisodeToAir;
-  final int numberOfEpisodes;
-  final int numberOfSeasons;
-  final List<dynamic> originCountry;
-  final List<Genre> genres;
-  final List<Season> seasons;
-  final int id;
-  final String originalName;
-  final String overview;
-  final String posterPath;
-  final double voteAverage;
-  final int voteCount;
-
   @override
   // TODO: implement props
   List<Object?> get props => [
+    adult,
     backdropPath,
-    lastEpisodeToAir,
-    episodeRunTime,
-    name,
+    createdBy,
     firstAirDate,
-    nextEpisodeToAir,
+    genres,
+    homepage,
+    id,
+    inProduction,
+    lastAirDate,
+    name,
+    networks,
     numberOfEpisodes,
     numberOfSeasons,
-    originCountry,
-    genres,
-    seasons,
-    id,
-    originalName,
+    originalLanguage,
     overview,
+    popularity,
     posterPath,
+    seasons,
+    status,
+    tagline,
+    type,
     voteAverage,
     voteCount,
   ];
