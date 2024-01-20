@@ -1,29 +1,29 @@
 {
-    "page": 1,
-    "results": [
-      {
-        "poster_path": "/path.jpg",
-        "popularity": 2.3,
-        "id": 1,
-        "backdrop_path": "/path.jpg",
-        "vote_average": 8.0,
-        "overview": "Overview",
-        "first_air_date": "2022-10-10",
-        "origin_country": [
-            "en", 
-            "id"
-        ],
-        "genre_ids": [
-            1,
-            2,
-            3
-        ],
-        "original_language": "Original Language",
-        "vote_count": 230,
-        "name": "Name",
-        "original_name": "Original Name"
-      }
-    ],
-    "total_results": 192,
-    "total_pages": 10
-  }
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/dYMcwXPn89dkrkBFD4No80axaYk.jpg",
+      "genre_ids": [
+        80,
+        18,
+        35
+      ],
+      "id": 79744,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "The Rookie",
+      "overview": "Starting over isn’t easy, especially for small-town guy John Nolan who, after a life-altering incident, is pursuing his dream of being an LAPD officer. As the force’s oldest rookie, he’s met with skepticism from some higher-ups who see him as just a walking midlife crisis.",
+      "popularity": 2799.572,
+      "poster_path": "/jbMefmo6EjcvpOULP50nfMpGP70.jpg",
+      "first_air_date": "2018-10-16",
+      "name": "The Rookie",
+      "vote_average": 8.279,
+      "vote_count": 1542
+    }
+  ],
+  "total_pages": 8145,
+  "total_results": 162889
+}
