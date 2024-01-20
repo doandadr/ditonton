@@ -41,7 +41,7 @@ void main() {
                         'application/json; charset=utf-8',
                   }));
       // act
-      final result = await dataSource.getOnTheAirTv();
+      final result = await dataSource.getOnTheAirTvs();
       // assert
       expect(result, equals(tTvList));
     });
@@ -54,7 +54,7 @@ void main() {
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       // act
-      final call = dataSource.getOnTheAirTv();
+      final call = dataSource.getOnTheAirTvs();
       // assert
       expect(() => call, throwsA(isA<ServerException>()));
     });
@@ -76,7 +76,7 @@ void main() {
                         'application/json; charset=utf-8',
                   }));
       // act
-      final result = await dataSource.getPopularTv();
+      final result = await dataSource.getPopularTvs();
       // assert
       expect(result, equals(tTvList));
     });
@@ -89,7 +89,7 @@ void main() {
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       // act
-      final call = dataSource.getPopularTv();
+      final call = dataSource.getPopularTvs();
       // assert
       expect(() => call, throwsA(isA<ServerException>()));
     });
@@ -106,7 +106,7 @@ void main() {
           .thenAnswer((_) async =>
           http.Response(readJson('dummy_data/tv/top_rated.json'), 200));
       // act
-      final result = await dataSource.getTopRatedTv();
+      final result = await dataSource.getTopRatedTvs();
       // assert
       expect(result, tTvList);
     });
@@ -117,7 +117,7 @@ void main() {
           when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/top_rated?$API_KEY')))
               .thenAnswer((_) async => http.Response('Not Found', 404));
           // act
-          final call = dataSource.getTopRatedTv();
+          final call = dataSource.getTopRatedTvs();
           // assert
           expect(() => call, throwsA(isA<ServerException>()));
         });
