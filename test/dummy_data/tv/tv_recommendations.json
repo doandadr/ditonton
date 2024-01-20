@@ -1,29 +1,29 @@
 {
-    "page": 1,
-    "results": [
-      {
-        "poster_path": "/path.jpg",
-        "popularity": 2.3,
-        "id": 1,
-        "backdrop_path": "/path.jpg",
-        "vote_average": 8.0,
-        "overview": "Overview",
-        "first_air_date": "2022-10-10",
-        "origin_country": [
-            "en", 
-            "id"
-        ],
-        "genre_ids": [
-            1,
-            2,
-            3
-        ],
-        "original_language": "Original Language",
-        "vote_count": 230,
-        "name": "Name",
-        "original_name": "Original Name"
-      }
-    ],
-    "total_results": 192,
-    "total_pages": 10
-  }
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/9faGSFi5jam6pDWGNd0p8JcJgXQ.jpg",
+      "id": 1396,
+      "name": "Breaking Bad",
+      "original_language": "en",
+      "original_name": "Breaking Bad",
+      "overview": "When Walter White, a New Mexico chemistry teacher, is diagnosed with Stage III cancer and given a prognosis of only two years left to live. He becomes filled with a sense of fearlessness and an unrelenting desire to secure his family's financial future at any cost as he enters the dangerous world of drugs and crime.",
+      "poster_path": "/ztkUQFLlC19CCMYHW9o1zWhJRNq.jpg",
+      "media_type": "tv",
+      "genre_ids": [
+        18,
+        80
+      ],
+      "popularity": 502.901,
+      "first_air_date": "2008-01-20",
+      "vote_average": 8.898,
+      "vote_count": 12963,
+      "origin_country": [
+        "US"
+      ]
+    }
+  ],
+  "total_pages": 2,
+  "total_results": 40
+}
