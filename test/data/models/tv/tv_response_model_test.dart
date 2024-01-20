@@ -9,21 +9,20 @@ import '../../../json_reader.dart';
 
 void main() {
   final tTvModel = TvModel(
-    adult: false,
-    backdropPath: "/path.jpg",
-    genreIds: [1, 2, 3, 4],
-    id: 1,
-    originCountry: ["A", "B", "C"],
-    originalLanguage: "Original Language",
-    originalName: "Original Name",
-    overview: "Overview",
-    popularity: 1.0,
-    posterPath: "/path.jpg",
-    firstAirDate: "2020-05-05",
-    name: "Name",
-    voteAverage: 1.0,
-    voteCount: 1,
-  );
+      posterPath: "/path.jpg",
+      popularity: 2.3,
+      id: 1,
+      backdropPath: "/path.jpg",
+      voteAverage: 8.0,
+      overview: "Overview",
+      firstAirDate: "2022-10-10",
+      originCountry: ["en", "id"],
+      genreIds: [1, 2, 3],
+      originalLanguage: "Original Language",
+      voteCount: 230,
+      name: "Name",
+      originalName: "Original Name",
+      adult: false);
 
   final tTvResponseModel = TvResponse(tvList: <TvModel>[tTvModel]);
 
@@ -46,36 +45,34 @@ void main() {
       // act
       final result = tTvResponseModel.toJson();
       // assert
-      final expectedJsonMap = {
+      final expectedJsonMap =
         {
           "results": [
             {
-              "poster_path": "/path.jpg",
-              "popularity": 2.3,
-              "id": 1,
+              "adult": false,
               "backdrop_path": "/path.jpg",
-              "vote_average": 8.0,
-              "overview": "Overview",
               "first_air_date": "2022-10-10",
-              "origin_country": [
-                "en",
-                "id"
-              ],
               "genre_ids": [
                 1,
                 2,
                 3
               ],
-              "original_language": "Original Language",
-              "vote_count": 230,
+              "id": 1,
               "name": "Name",
-              "original_name": "Original Name"
+              "origin_country": [
+                "en",
+                "id"
+              ],
+              "original_language": "Original Language",
+              "original_name": "Original Name",
+              "overview": "Overview",
+              "popularity": 2.3,
+              "poster_path": "/path.jpg",
+              "vote_average": 8.0,
+              "vote_count": 230
             }
-          ],
-          "total_results": 192,
-          "total_pages": 10
-        }
-      };
+          ]
+        };
       expect(result, expectedJsonMap);
     });
   });

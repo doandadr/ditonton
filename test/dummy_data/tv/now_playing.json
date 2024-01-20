@@ -1,6 +1,8 @@
 {
+  "page": 1,
   "results": [
     {
+      "adult": false,
       "poster_path": "/path.jpg",
       "popularity": 2.3,
       "id": 1,
@@ -9,13 +11,13 @@
       "overview": "Overview",
       "first_air_date": "2022-10-10",
       "origin_country": [
-          "en", 
-          "id"
+        "en",
+        "id"
       ],
       "genre_ids": [
-          1,
-          2,
-          3
+        1,
+        2,
+        3
       ],
       "original_language": "Original Language",
       "vote_count": 230,
