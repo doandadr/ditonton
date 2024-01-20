@@ -7,7 +7,7 @@ import 'dart:async' as _i5;
 import 'dart:convert' as _i7;
 import 'dart:typed_data' as _i9;
 
-import 'package:ditonton/data/datasources/db/tv/tv_remote_data_source.dart'
+import 'package:ditonton/data/datasources/tv/tv_remote_data_source.dart'
     as _i4;
 import 'package:ditonton/data/models/tv/tv_detail_model.dart' as _i2;
 import 'package:ditonton/data/models/tv/tv_model.dart' as _i6;
