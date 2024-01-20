@@ -7,17 +7,17 @@ import 'package:ditonton/data/models/tv/tv_response.dart';
 import 'package:http/http.dart' as http;
 
 abstract class TvRemoteDataSource {
-  Future<List<TvModel>> getOnTheAirTv();
+  Future<List<TvModel>> getOnTheAirTvs();
 
-  Future<List<TvModel>> getPopularTv();
+  Future<List<TvModel>> getPopularTvs();
 
-  Future<List<TvModel>> getTopRatedTv();
+  Future<List<TvModel>> getTopRatedTvs();
 
   Future<TvDetailResponse> getTvDetail(int id);
 
   Future<List<TvModel>> getTvRecommendations(int id);
 
-  Future<List<TvModel>> searchTv(String query);
+  Future<List<TvModel>> searchTvs(String query);
 }
 
 class TvRemoteDataSourceImpl implements TvRemoteDataSource {
@@ -29,7 +29,7 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
   TvRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<TvModel>> getOnTheAirTv() async {
+  Future<List<TvModel>> getOnTheAirTvs() async {
     final response =
         await client.get(Uri.parse("$BASE_URL/tv/on_the_air?$API_KEY"));
 
@@ -41,7 +41,7 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
   }
 
   @override
-  Future<List<TvModel>> getPopularTv() async {
+  Future<List<TvModel>> getPopularTvs() async {
     // TODO: implement getPopularTv
     final response =
         await client.get(Uri.parse("$BASE_URL/tv/popular?$API_KEY"));
@@ -54,7 +54,7 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
   }
 
   @override
-  Future<List<TvModel>> getTopRatedTv() async {
+  Future<List<TvModel>> getTopRatedTvs() async {
     final response =
         await client.get(Uri.parse("$BASE_URL/tv/top_rated?$API_KEY"));
 
@@ -89,7 +89,7 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
   }
 
   @override
-  Future<List<TvModel>> searchTv(String query) async {
+  Future<List<TvModel>> searchTvs(String query) async {
     final response = await client
         .get(Uri.parse("$BASE_URL/search/tv?$API_KEY&query=$query"));
 

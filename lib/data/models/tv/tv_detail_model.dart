@@ -8,22 +8,25 @@ import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/tv/created_by_model.dart';
 import 'package:ditonton/data/models/tv/network_model.dart';
 import 'package:ditonton/data/models/tv/season_model.dart';
+import 'package:ditonton/domain/entities/tv/tv_detail.dart';
 import 'package:equatable/equatable.dart';
 
-TvDetailResponse tvDetailResponseFromJson(String str) => TvDetailResponse.fromJson(json.decode(str));
+TvDetailResponse tvDetailResponseFromJson(String str) =>
+    TvDetailResponse.fromJson(json.decode(str));
 
-String tvDetailResponseToJson(TvDetailResponse data) => json.encode(data.toJson());
+String tvDetailResponseToJson(TvDetailResponse data) =>
+    json.encode(data.toJson());
 
-class TvDetailResponse extends Equatable{
+class TvDetailResponse extends Equatable {
   bool adult;
   String backdropPath;
   List<CreatedByModel> createdBy;
-  DateTime firstAirDate;
+  String firstAirDate;
   List<GenreModel> genres;
   String homepage;
   int id;
   bool inProduction;
-  DateTime lastAirDate;
+  String lastAirDate;
   String name;
   List<NetworkModel> networks;
   int numberOfEpisodes;
@@ -65,84 +68,117 @@ class TvDetailResponse extends Equatable{
     required this.voteCount,
   });
 
-  factory TvDetailResponse.fromJson(Map<String, dynamic> json) => TvDetailResponse(
-    adult: json["adult"],
-    backdropPath: json["backdrop_path"],
-    createdBy: List<CreatedByModel>.from(json["created_by"].map((x) => CreatedByModel.fromJson(x))),
-    firstAirDate: DateTime.parse(json["first_air_date"]),
-    genres: List<GenreModel>.from(json["genres"].map((x) => GenreModel.fromJson(x))),
-    homepage: json["homepage"],
-    id: json["id"],
-    inProduction: json["in_production"],
-    lastAirDate: DateTime.parse(json["last_air_date"]),
-    name: json["name"],
-    networks: List<NetworkModel>.from(json["networks"].map((x) => NetworkModel.fromJson(x))),
-    numberOfEpisodes: json["number_of_episodes"],
-    numberOfSeasons: json["number_of_seasons"],
-    originalLanguage: json["original_language"],
-    overview: json["overview"],
-    popularity: json["popularity"]?.toDouble(),
-    posterPath: json["poster_path"],
-    seasons: List<SeasonModel>.from(json["seasons"].map((x) => SeasonModel.fromJson(x))),
-    status: json["status"],
-    tagline: json["tagline"],
-    type: json["type"],
-    voteAverage: json["vote_average"]?.toDouble(),
-    voteCount: json["vote_count"],
-  );
+  factory TvDetailResponse.fromJson(Map<String, dynamic> json) =>
+      TvDetailResponse(
+        adult: json["adult"],
+        backdropPath: json["backdrop_path"],
+        createdBy: List<CreatedByModel>.from(
+            json["created_by"].map((x) => CreatedByModel.fromJson(x))),
+        firstAirDate: json["first_air_date"],
+        genres: List<GenreModel>.from(
+            json["genres"].map((x) => GenreModel.fromJson(x))),
+        homepage: json["homepage"],
+        id: json["id"],
+        inProduction: json["in_production"],
+        lastAirDate: json["last_air_date"],
+        name: json["name"],
+        networks: List<NetworkModel>.from(
+            json["networks"].map((x) => NetworkModel.fromJson(x))),
+        numberOfEpisodes: json["number_of_episodes"],
+        numberOfSeasons: json["number_of_seasons"],
+        originalLanguage: json["original_language"],
+        overview: json["overview"],
+        popularity: json["popularity"]?.toDouble(),
+        posterPath: json["poster_path"],
+        seasons: List<SeasonModel>.from(
+            json["seasons"].map((x) => SeasonModel.fromJson(x))),
+        status: json["status"],
+        tagline: json["tagline"],
+        type: json["type"],
+        voteAverage: json["vote_average"]?.toDouble(),
+        voteCount: json["vote_count"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "adult": adult,
-    "backdrop_path": backdropPath,
-    "created_by": List<dynamic>.from(createdBy.map((x) => x.toJson())),
-    "first_air_date": "${firstAirDate.year.toString().padLeft(4, '0')}-${firstAirDate.month.toString().padLeft(2, '0')}-${firstAirDate.day.toString().padLeft(2, '0')}",
-    "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
-    "homepage": homepage,
-    "id": id,
-    "in_production": inProduction,
-    "last_air_date": "${lastAirDate.year.toString().padLeft(4, '0')}-${lastAirDate.month.toString().padLeft(2, '0')}-${lastAirDate.day.toString().padLeft(2, '0')}",
-    "name": name,
-    "networks": List<dynamic>.from(networks.map((x) => x.toJson())),
-    "number_of_episodes": numberOfEpisodes,
-    "number_of_seasons": numberOfSeasons,
-    "original_language": originalLanguage,
-    "overview": overview,
-    "popularity": popularity,
-    "poster_path": posterPath,
-    "seasons": List<dynamic>.from(seasons.map((x) => x.toJson())),
-    "status": status,
-    "tagline": tagline,
-    "type": type,
-    "vote_average": voteAverage,
-    "vote_count": voteCount,
-  };
+        "adult": adult,
+        "backdrop_path": backdropPath,
+        "created_by": List<dynamic>.from(createdBy.map((x) => x.toJson())),
+        "first_air_date": firstAirDate,
+        "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
+        "homepage": homepage,
+        "id": id,
+        "in_production": inProduction,
+        "last_air_date": lastAirDate,
+        "name": name,
+        "networks": List<dynamic>.from(networks.map((x) => x.toJson())),
+        "number_of_episodes": numberOfEpisodes,
+        "number_of_seasons": numberOfSeasons,
+        "original_language": originalLanguage,
+        "overview": overview,
+        "popularity": popularity,
+        "poster_path": posterPath,
+        "seasons": List<dynamic>.from(seasons.map((x) => x.toJson())),
+        "status": status,
+        "tagline": tagline,
+        "type": type,
+        "vote_average": voteAverage,
+        "vote_count": voteCount,
+      };
+
+  // TODO to entity
+  TvDetail toEntity() {
+    return TvDetail(
+      adult: this.adult,
+      backdropPath: this.backdropPath,
+      createdBy: this.createdBy.map((cb) => cb.toEntity()).toList(),
+      firstAirDate: this.firstAirDate,
+      genres: this.genres.map((genre) => genre.toEntity()).toList(),
+      homepage: this.homepage,
+      id: this.id,
+      inProduction: this.inProduction,
+      lastAirDate: this.lastAirDate,
+      name: this.name,
+      networks: this.networks.map((network) => network.toEntity()).toList(),
+      numberOfEpisodes: this.numberOfEpisodes,
+      numberOfSeasons: this.numberOfSeasons,
+      originalLanguage: this.originalLanguage,
+      overview: this.overview,
+      popularity: this.popularity,
+      posterPath: this.posterPath,
+      seasons: this.seasons.map((season) => season.toEntity()).toList(),
+      status: this.status,
+      tagline: this.tagline,
+      type: this.type,
+      voteAverage: this.voteAverage,
+      voteCount: this.voteCount,
+    );
+  }
 
   @override
   // TODO: implement props
   List<Object?> get props => [
-    adult,
-    backdropPath,
-    createdBy,
-    firstAirDate,
-    genres,
-    homepage,
-    id,
-    inProduction,
-    lastAirDate,
-    name,
-    networks,
-    numberOfEpisodes,
-    numberOfSeasons,
-    originalLanguage,
-    overview,
-    popularity,
-    posterPath,
-    seasons,
-    status,
-    tagline,
-    type,
-    voteAverage,
-    voteCount,
-  ];
+        adult,
+        backdropPath,
+        createdBy,
+        firstAirDate,
+        genres,
+        homepage,
+        id,
+        inProduction,
+        lastAirDate,
+        name,
+        networks,
+        numberOfEpisodes,
+        numberOfSeasons,
+        originalLanguage,
+        overview,
+        popularity,
+        posterPath,
+        seasons,
+        status,
+        tagline,
+        type,
+        voteAverage,
+        voteCount,
+      ];
 }
-
