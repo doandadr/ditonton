@@ -1,10 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
+import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/movie/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/movie/search_movies_page.dart';
 import 'package:ditonton/presentation/pages/movie/top_rated_movies_page.dart';
+import 'package:ditonton/presentation/pages/movie/watchlist_movies_page.dart';
+import 'package:ditonton/presentation/pages/tv/home_tv_page.dart';
+import 'package:ditonton/presentation/pages/tv/watchlist_tvs_page.dart';
 import 'package:ditonton/presentation/provider/movie/movie_list_notifier.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:flutter/material.dart';
@@ -30,40 +34,55 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // drawer: Drawer(
-      //   child: Column(
-      //     children: [
-      //       UserAccountsDrawerHeader(
-      //         currentAccountPicture: CircleAvatar(
-      //           backgroundImage: AssetImage('assets/circle-g.png'),
-      //         ),
-      //         accountName: Text('Ditonton'),
-      //         accountEmail: Text('ditonton@dicoding.com'),
-      //       ),
-      //       ListTile(
-      //         leading: Icon(Icons.movie),
-      //         title: Text('Movies'),
-      //         onTap: () {
-      //           Navigator.pop(context);
-      //         },
-      //       ),
-      //       ListTile(
-      //         leading: Icon(Icons.save_alt),
-      //         title: Text('Watchlist'),
-      //         onTap: () {
-      //           Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
-      //         },
-      //       ),
-      //       ListTile(
-      //         onTap: () {
-      //           Navigator.pushNamed(context, AboutPage.ROUTE_NAME);
-      //         },
-      //         leading: Icon(Icons.info_outline),
-      //         title: Text('About'),
-      //       ),
-      //     ],
-      //   ),
-      // ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            UserAccountsDrawerHeader(
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('assets/circle-g.png'),
+              ),
+              accountName: Text('Ditonton'),
+              accountEmail: Text('ditonton@dicoding.com'),
+            ),
+            ListTile(
+              leading: Icon(Icons.movie),
+              title: Text('Movies'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              key: Key('tv_series'),
+              leading: Icon(Icons.tv),
+              title: Text('Tv Series'),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, HomeTvPage.ROUTE_NAME);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.save_alt),
+              title: Text('Movie Watchlist'),
+              onTap: () {
+                Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.save_alt),
+              title: Text('Tv Series Watchlist'),
+              onTap: () {
+                Navigator.pushNamed(context, WatchlistTvsPage.ROUTE_NAME);
+              },
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.pushNamed(context, AboutPage.ROUTE_NAME);
+              },
+              leading: Icon(Icons.info_outline),
+              title: Text('About'),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Text('Movies'),
         actions: [

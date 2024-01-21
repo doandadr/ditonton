@@ -6,9 +6,9 @@ import 'package:ditonton/presentation/pages/tv/watchlist_tvs_page.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
-  final Widget content;
+  final Widget child;
 
-  const CustomDrawer({super.key, required this.content});
+  const CustomDrawer({super.key, required this.child});
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();
@@ -42,32 +42,32 @@ class _CustomDrawerState extends State<CustomDrawer>
             leading: Icon(Icons.movie),
             title: Text('Movies'),
             onTap: () {
-              Navigator.pushNamed(context, HomeMoviePage.ROUTE_NAME);
+              Navigator.pushReplacementNamed(context, HomeMoviePage.ROUTE_NAME);
             },
           ), ListTile(
             leading: Icon(Icons.tv),
             title: Text('Tv Series'),
             onTap: () {
-              Navigator.pushNamed(context, HomeTvPage.ROUTE_NAME);
+              Navigator.pushReplacementNamed(context, HomeTvPage.ROUTE_NAME);
             },
           ),
           ListTile(
             leading: Icon(Icons.save_alt),
             title: Text('Movies Watchlist'),
             onTap: () {
-              Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+              Navigator.pushReplacementNamed(context, WatchlistMoviesPage.ROUTE_NAME);
             },
           ),
           ListTile(
             leading: Icon(Icons.save_alt),
             title: Text('Tv Series Watchlist'),
             onTap: () {
-              Navigator.pushNamed(context, WatchlistTvsPage.ROUTE_NAME);
+              Navigator.pushReplacementNamed(context, WatchlistTvsPage.ROUTE_NAME);
             },
           ),
           ListTile(
             onTap: () {
-              Navigator.pushNamed(context, AboutPage.ROUTE_NAME);
+              Navigator.pushReplacementNamed(context, AboutPage.ROUTE_NAME);
             },
             leading: Icon(Icons.info_outline),
             title: Text('About'),
@@ -100,7 +100,7 @@ class _CustomDrawerState extends State<CustomDrawer>
                     ..translate(slide)
                     ..scale(scale),
                   alignment: Alignment.centerLeft,
-                  child: widget.content),
+                  child: widget.child),
             ],
           );
         },
