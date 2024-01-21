@@ -1,3 +1,6 @@
+import 'package:ditonton/presentation/pages/about_page.dart';
+import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
+import 'package:ditonton/presentation/pages/movie/watchlist_movies_page.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -26,11 +29,9 @@ class _CustomDrawerState extends State<CustomDrawer>
     return Container(
       child: Column(
         children: [
-          // TODO change to personal data
           UserAccountsDrawerHeader(
             currentAccountPicture: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://raw.githubusercontent.com/dicodingacademy/assets/main/flutter_expert_academy/dicoding-icon.png'),
+              backgroundImage: AssetImage('assets/circle-g.png'),
             ),
             accountName: Text('Ditonton'),
             accountEmail: Text('ditonton@dicoding.com'),
@@ -38,19 +39,39 @@ class _CustomDrawerState extends State<CustomDrawer>
           ListTile(
             leading: Icon(Icons.movie),
             title: Text('Movies'),
+            onTap: () {
+              Navigator.pushNamed(context, HomeMoviePage.ROUTE_NAME);
+            },
+          ), ListTile(
+            leading: Icon(Icons.tv),
+            title: Text('Tv Series'),
+            onTap: () {
+              Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+            },
           ),
           ListTile(
             leading: Icon(Icons.save_alt),
-            title: Text('WatchList'),
-          )
+            title: Text('Watchlist'),
+            onTap: () {
+              Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+            },
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.pushNamed(context, AboutPage.ROUTE_NAME);
+            },
+            leading: Icon(Icons.info_outline),
+            title: Text('About'),
+          ),
         ],
       ),
     );
   }
 
-  void toggle() => _animationController.isDismissed
-      ? _animationController.forward()
-      : _animationController.reverse();
+  void toggle() =>
+      _animationController.isDismissed
+          ? _animationController.forward()
+          : _animationController.reverse();
 
   @override
   Widget build(BuildContext context) {
@@ -78,3 +99,4 @@ class _CustomDrawerState extends State<CustomDrawer>
     );
   }
 }
+
