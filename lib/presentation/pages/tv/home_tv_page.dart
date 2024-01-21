@@ -32,7 +32,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ditonton'),
+        title: Text('Tv Series'),
         actions: [
           IconButton(
             onPressed: () {
@@ -49,7 +49,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Now Playing',
+                'On The Air',
                 style: kHeading6,
               ),
               Consumer<TvListNotifier>(builder: (context, data, child) {

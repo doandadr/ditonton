@@ -33,8 +33,7 @@ final testTvDetail = TvDetail(
           id: 9813,
           creditId: '5256c8c219c2956ff604858a',
           name: 'David Benioff',
-          gender: 2,
-          profilePath: "/xvNN5huL0X8yJ7h3IZfGG4O2zBD.jpg")
+          gender: 2)
     ],
     firstAirDate: "2011-04-17",
     genres: [Genre(id: 10765, name: "Sci-Fi & Fantasy")],

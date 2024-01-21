@@ -12,7 +12,7 @@ class SearchTvsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
+        title: Text('Search Tv Series'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -25,7 +25,7 @@ class SearchTvsPage extends StatelessWidget {
                     .fetchTvSearch(query);
               },
               decoration: InputDecoration(
-                hintText: 'Search title',
+                hintText: 'Search series name',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),

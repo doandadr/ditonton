@@ -156,7 +156,10 @@ class DetailContent extends StatelessWidget {
                               _showGenres(tv.genres),
                             ),
                             Text(
-                              _showDuration(10101010), // TODO change relevant info
+                              "${tv.numberOfSeasons} Seasons",
+                            ),
+                            Text(
+                              "${tv.numberOfEpisodes} Episodes",
                             ),
                             Row(
                               children: [
@@ -290,16 +293,5 @@ class DetailContent extends StatelessWidget {
     }
 
     return result.substring(0, result.length - 2);
-  }
-
-  String _showDuration(int runtime) {
-    final int hours = runtime ~/ 60;
-    final int minutes = runtime % 60;
-
-    if (hours > 0) {
-      return '${hours}h ${minutes}m';
-    } else {
-      return '${minutes}m';
-    }
   }
 }

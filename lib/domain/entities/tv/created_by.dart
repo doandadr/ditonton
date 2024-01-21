@@ -5,14 +5,12 @@ class CreatedBy extends Equatable {
   String creditId;
   String name;
   int gender;
-  String profilePath;
 
   CreatedBy({
     required this.id,
     required this.creditId,
     required this.name,
     required this.gender,
-    required this.profilePath,
   });
 
   @override
@@ -22,6 +20,5 @@ class CreatedBy extends Equatable {
     creditId,
     name,
     gender,
-    profilePath,
   ];
 }

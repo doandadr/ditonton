@@ -37,7 +37,7 @@ class _WatchlistTvsPageState extends State<WatchlistTvsPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Watchlist'),
+        title: Text('Tv Series Watchlist'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

@@ -28,7 +28,7 @@ class DatabaseHelper {
     final path = await getDatabasesPath();
     final databasePath = '$path/ditonton.db';
 
-    var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);
+    var db = await openDatabase(databasePath, version: 2, onCreate: _onCreate);
     return db;
   }
 
@@ -48,7 +48,7 @@ class DatabaseHelper {
         name TEXT,
         overview TEXT,
         posterPath TEXT       
-        )
+        );
     ''');
   }
 

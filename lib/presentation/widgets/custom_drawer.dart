@@ -1,6 +1,8 @@
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
 import 'package:ditonton/presentation/pages/movie/watchlist_movies_page.dart';
+import 'package:ditonton/presentation/pages/tv/home_tv_page.dart';
+import 'package:ditonton/presentation/pages/tv/watchlist_tvs_page.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -46,14 +48,21 @@ class _CustomDrawerState extends State<CustomDrawer>
             leading: Icon(Icons.tv),
             title: Text('Tv Series'),
             onTap: () {
+              Navigator.pushNamed(context, HomeTvPage.ROUTE_NAME);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.save_alt),
+            title: Text('Movies Watchlist'),
+            onTap: () {
               Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
             },
           ),
           ListTile(
             leading: Icon(Icons.save_alt),
-            title: Text('Watchlist'),
+            title: Text('Tv Series Watchlist'),
             onTap: () {
-              Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+              Navigator.pushNamed(context, WatchlistTvsPage.ROUTE_NAME);
             },
           ),
           ListTile(
