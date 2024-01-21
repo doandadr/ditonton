@@ -186,36 +186,35 @@ class MockTvRepository extends _i1.Mock implements _i5.TvRepository {
         )),
       ) as _i6.Future<_i2.Either<_i7.Failure, List<_i8.Tv>>>);
   @override
-  _i6.Future<_i2.Either<_i7.Failure, String>> saveWatchlist(
-          _i9.TvDetail? movie) =>
+  _i6.Future<_i2.Either<_i7.Failure, String>> saveWatchlist(_i9.TvDetail? tv) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveWatchlist,
-          [movie],
+          [tv],
         ),
         returnValue: _i6.Future<_i2.Either<_i7.Failure, String>>.value(
             _FakeEither_0<_i7.Failure, String>(
           this,
           Invocation.method(
             #saveWatchlist,
-            [movie],
+            [tv],
           ),
         )),
       ) as _i6.Future<_i2.Either<_i7.Failure, String>>);
   @override
   _i6.Future<_i2.Either<_i7.Failure, String>> removeWatchlist(
-          _i9.TvDetail? movie) =>
+          _i9.TvDetail? tv) =>
       (super.noSuchMethod(
         Invocation.method(
           #removeWatchlist,
-          [movie],
+          [tv],
         ),
         returnValue: _i6.Future<_i2.Either<_i7.Failure, String>>.value(
             _FakeEither_0<_i7.Failure, String>(
           this,
           Invocation.method(
             #removeWatchlist,
-            [movie],
+            [tv],
           ),
         )),
       ) as _i6.Future<_i2.Either<_i7.Failure, String>>);
