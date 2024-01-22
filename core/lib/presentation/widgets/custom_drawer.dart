@@ -1,4 +1,4 @@
-import 'package:about/about.dart';
+import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
