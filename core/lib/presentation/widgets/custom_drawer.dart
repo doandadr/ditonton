@@ -1,8 +1,4 @@
 import 'package:about/about.dart';
-import 'package:core/presentation/pages/movie/home_movie_page.dart';
-import 'package:core/presentation/pages/movie/watchlist_movies_page.dart';
-import 'package:core/presentation/pages/tv/home_tv_page.dart';
-import 'package:core/presentation/pages/tv/watchlist_tvs_page.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -23,7 +19,7 @@ class _CustomDrawerState extends State<CustomDrawer>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 250),
     );
   }
 
@@ -31,7 +27,7 @@ class _CustomDrawerState extends State<CustomDrawer>
     return Container(
       child: Column(
         children: [
-          UserAccountsDrawerHeader(
+          const UserAccountsDrawerHeader(
             currentAccountPicture: CircleAvatar(
               backgroundImage: AssetImage('assets/circle-g.png'),
             ),
@@ -39,28 +35,28 @@ class _CustomDrawerState extends State<CustomDrawer>
             accountEmail: Text('ditonton@dicoding.com'),
           ),
           ListTile(
-            leading: Icon(Icons.movie),
-            title: Text('Movies'),
+            leading: const Icon(Icons.movie),
+            title: const Text('Movies'),
             onTap: () {
               Navigator.pushReplacementNamed(context, homeMoviePageRoute);
             },
           ), ListTile(
-            leading: Icon(Icons.tv),
-            title: Text('Tv Series'),
+            leading: const Icon(Icons.tv),
+            title: const Text('Tv Series'),
             onTap: () {
               Navigator.pushReplacementNamed(context, homeTvPageRoute);
             },
           ),
           ListTile(
-            leading: Icon(Icons.save_alt),
-            title: Text('Movies Watchlist'),
+            leading: const Icon(Icons.save_alt),
+            title: const Text('Movies Watchlist'),
             onTap: () {
               Navigator.pushReplacementNamed(context, watchlistMoviesPageRoute);
             },
           ),
           ListTile(
-            leading: Icon(Icons.save_alt),
-            title: Text('Tv Series Watchlist'),
+            leading: const Icon(Icons.save_alt),
+            title: const Text('Tv Series Watchlist'),
             onTap: () {
               Navigator.pushReplacementNamed(context, watchlistTvsPageRoute);
             },
@@ -69,8 +65,8 @@ class _CustomDrawerState extends State<CustomDrawer>
             onTap: () {
               Navigator.pushReplacementNamed(context, aboutPageRoute);
             },
-            leading: Icon(Icons.info_outline),
-            title: Text('About'),
+            leading: const Icon(Icons.info_outline),
+            title: const Text('About'),
           ),
         ],
       ),

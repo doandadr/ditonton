@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
-import 'package:core/core.dart';
 import 'package:core/domain/usecases/tv/get_watchlist_tvs.dart';
 import 'package:core/presentation/provider/tv/watchlist_tv_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -41,7 +40,7 @@ void main() {
   test('should return error when data is unsuccessful', () async {
     // arrange
     when(mockGetWatchlistTvs.execute())
-        .thenAnswer((_) async => Left(DatabaseFailure("Can't get data")));
+        .thenAnswer((_) async => const Left(DatabaseFailure("Can't get data")));
     // act
     await provider.fetchWatchlistTvs();
     // assert

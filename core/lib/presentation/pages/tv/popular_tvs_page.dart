@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 class PopularTvsPage extends StatefulWidget {
   static const ROUTE_NAME = '/popular-tvs';
 
+  const PopularTvsPage({super.key});
+
   @override
   _PopularTvsPageState createState() => _PopularTvsPageState();
 }
@@ -24,14 +26,14 @@ class _PopularTvsPageState extends State<PopularTvsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Popular Tvs'),
+        title: const Text('Popular Tvs'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<PopularTvsNotifier>(
           builder: (context, data, child) {
             if (data.state == RequestState.Loading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (data.state == RequestState.Loaded) {
@@ -44,7 +46,7 @@ class _PopularTvsPageState extends State<PopularTvsPage> {
               );
             } else {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(data.message),
               );
             }

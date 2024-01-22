@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
-import 'package:core/core.dart';
 import 'package:core/domain/entities/tv/tv.dart';
 import 'package:core/domain/usecases/tv/get_on_the_air_tvs.dart';
 import 'package:core/domain/usecases/tv/get_popular_tvs.dart';
@@ -40,9 +39,9 @@ void main() {
   final tTv = Tv(
       adult: false,
       backdropPath: "/nQSaUQzYnSE9v4CXZiOkSNndaYu.jpg",
-      genreIds: [10765, 18, 10759],
+      genreIds: const [10765, 18, 10759],
       id: 1399,
-      originCountry: ["US"],
+      originCountry: const ["US"],
       originalLanguage: "en",
       originalName: "Game of Thrones",
       overview:
@@ -92,7 +91,7 @@ void main() {
 
     test('should return error when data is unsuccessful', () async {
       // arrange
-      when(mockGetOnTheAirTvs.execute()).thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+      when(mockGetOnTheAirTvs.execute()).thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchOnTheAirTvs();
       // assert
@@ -138,7 +137,7 @@ void main() {
 
     test('should return error when data is unsuccessful', () async {
       // arrange
-      when(mockGetPopularTvs.execute()).thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+      when(mockGetPopularTvs.execute()).thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchPopularTvs();
       // assert
@@ -184,7 +183,7 @@ void main() {
 
     test('should return error when data is unsuccessful', () async {
       // arrange
-      when(mockGetTopRatedTvs.execute()).thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+      when(mockGetTopRatedTvs.execute()).thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchTopRatedTvs();
       // assert

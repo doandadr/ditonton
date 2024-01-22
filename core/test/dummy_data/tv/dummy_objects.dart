@@ -9,9 +9,9 @@ import 'package:core/domain/entities/tv/tv_detail.dart';
 final testTv = Tv(
     adult: false,
     backdropPath: "/nQSaUQzYnSE9v4CXZiOkSNndaYu.jpg",
-    genreIds: [1, 2, 3, 4],
+    genreIds: const [1, 2, 3, 4],
     id: 1399,
-    originCountry: ["US"],
+    originCountry: const ["US"],
     originalLanguage: "en",
     originalName: 'Game of Thrones',
     overview:
@@ -36,7 +36,7 @@ final testTvDetail = TvDetail(
           gender: 2)
     ],
     firstAirDate: "2011-04-17",
-    genres: [Genre(id: 10765, name: "Sci-Fi & Fantasy")],
+    genres: const [Genre(id: 10765, name: "Sci-Fi & Fantasy")],
     homepage: "http://www.hbo.com/game-of-thrones",
     id: 1399,
     inProduction: false,
@@ -79,7 +79,7 @@ final testWatchListTv = Tv.watchlist(
   posterPath: "/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg",
 );
 
-final testTvTable = TvTable(
+const testTvTable = TvTable(
   id: 1399,
   name: 'Game of Thrones',
   overview:

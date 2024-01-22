@@ -1,14 +1,11 @@
-import 'dart:convert';
 
 import 'package:core/data/models/tv/tv_model.dart';
-import 'package:core/data/models/tv/tv_response.dart';
 import 'package:core/domain/entities/tv/tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../json_reader.dart';
 
 void main() {
-  final tTvModel = TvModel(
+  const tTvModel = TvModel(
     adult: false,
     backdropPath: "/path.jpg",
     genreIds: [1, 2, 3, 4],
@@ -28,9 +25,9 @@ void main() {
   final tTv = Tv(
     adult: false,
     backdropPath: "/path.jpg",
-    genreIds: [1, 2, 3, 4],
+    genreIds: const [1, 2, 3, 4],
     id: 1,
-    originCountry: ["A", "B", "C"],
+    originCountry: const ["A", "B", "C"],
     originalLanguage: "Original Language",
     originalName: "Original Name",
     overview: "Overview",

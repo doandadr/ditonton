@@ -1,7 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
-import 'package:core/core.dart';
-import 'package:core/data/models/tv/tv_model.dart';
 import 'package:core/domain/entities/tv/tv.dart';
 import 'package:core/domain/usecases/tv/search_tvs.dart';
 import 'package:core/presentation/provider/tv/tv_search_notifier.dart';
@@ -29,9 +27,9 @@ void main() {
   final tTv = Tv(
       adult: false,
       backdropPath: "/nQSaUQzYnSE9v4CXZiOkSNndaYu.jpg",
-      genreIds: [10765, 18, 10759],
+      genreIds: const [10765, 18, 10759],
       id: 1399,
-      originCountry: ["US"],
+      originCountry: const ["US"],
       originalLanguage: "en",
       originalName: "Game of Thrones",
       overview:
@@ -43,7 +41,7 @@ void main() {
       voteAverage: 8.442,
       voteCount: 22490);
   final tTvList = <Tv>[tTv];
-  final tQuery = 'game of thrones';
+  const tQuery = 'game of thrones';
 
   group('search tvs', () {
     test('should change state to loading when usecase is called', () async {
@@ -72,7 +70,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockSearchTvs.execute(tQuery))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchTvSearch(tQuery);
       // assert

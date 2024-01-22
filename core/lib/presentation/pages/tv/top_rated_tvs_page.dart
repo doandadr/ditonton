@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 class TopRatedTvsPage extends StatefulWidget {
   static const ROUTE_NAME = '/top-rated-tvs';
 
+  const TopRatedTvsPage({super.key});
+
   @override
   _TopRatedTvsPageState createState() => _TopRatedTvsPageState();
 }
@@ -24,14 +26,14 @@ class _TopRatedTvsPageState extends State<TopRatedTvsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Top Rated Tvs'),
+        title: const Text('Top Rated Tvs'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<TopRatedTvsNotifier>(
           builder: (context, data, child) {
             if (data.state == RequestState.Loading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (data.state == RequestState.Loaded) {
@@ -44,7 +46,7 @@ class _TopRatedTvsPageState extends State<TopRatedTvsPage> {
               );
             } else {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(data.message),
               );
             }

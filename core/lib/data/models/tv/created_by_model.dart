@@ -30,10 +30,10 @@ class CreatedByModel extends Equatable {
 
   CreatedBy toEntity() {
     return CreatedBy(
-      id: this.id,
-      creditId: this.creditId,
-      name: this.name,
-      gender: this.gender,
+      id: id,
+      creditId: creditId,
+      name: name,
+      gender: gender,
     );
   }
 

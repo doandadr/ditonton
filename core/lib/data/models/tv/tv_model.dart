@@ -17,7 +17,7 @@ class TvModel extends Equatable {
   final double voteAverage;
   final int voteCount;
 
-  TvModel({
+  const TvModel({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -70,20 +70,20 @@ class TvModel extends Equatable {
 
   Tv toEntity() {
     return Tv(
-      adult: this.adult,
-      backdropPath: this.backdropPath,
-      firstAirDate: this.firstAirDate,
-      genreIds: this.genreIds,
-      id: this.id,
-      name: this.name,
-      originCountry: this.originCountry,
-      originalLanguage: this.originalLanguage,
-      originalName: this.originalName,
-      overview: this.overview,
-      popularity: this.popularity,
-      posterPath: this.posterPath,
-      voteAverage: this.voteAverage,
-      voteCount: this.voteCount,
+      adult: adult,
+      backdropPath: backdropPath,
+      firstAirDate: firstAirDate,
+      genreIds: genreIds,
+      id: id,
+      name: name,
+      originCountry: originCountry,
+      originalLanguage: originalLanguage,
+      originalName: originalName,
+      overview: overview,
+      popularity: popularity,
+      posterPath: posterPath,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
     );
   }
 

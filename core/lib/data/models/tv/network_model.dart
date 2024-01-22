@@ -30,10 +30,10 @@ class NetworkModel extends Equatable {
 
   Network toEntity() {
     return Network(
-      id: this.id,
-      logoPath: this.logoPath,
-      name: this.name,
-      originCountry: this.originCountry,
+      id: id,
+      logoPath: logoPath,
+      name: name,
+      originCountry: originCountry,
     );
   }
 

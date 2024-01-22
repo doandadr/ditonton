@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
-import 'package:core/core.dart';
 import 'package:core/domain/entities/tv/tv.dart';
 import 'package:core/domain/usecases/tv/get_top_rated_tvs.dart';
 import 'package:core/presentation/provider/tv/top_rated_tvs_notifier.dart';
@@ -28,9 +27,9 @@ void main() {
   final tTv = Tv(
       adult: false,
       backdropPath: "/nQSaUQzYnSE9v4CXZiOkSNndaYu.jpg",
-      genreIds: [10765, 18, 10759],
+      genreIds: const [10765, 18, 10759],
       id: 1399,
-      originCountry: ["US"],
+      originCountry: const ["US"],
       originalLanguage: "en",
       originalName: "Game of Thrones",
       overview:
@@ -70,7 +69,7 @@ void main() {
   test('should return error when data is unsuccessful', () async {
     // arrange
     when(mockGetTopRatedTvs.execute())
-        .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+        .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
     // act
     await notifier.fetchTopRatedTvs();
     // assert

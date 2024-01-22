@@ -13,7 +13,7 @@ void main() {
     usecase = GetWatchlistStatus(mockTvRepository);
   });
 
-  final tId = 1;
+  const tId = 1;
 
   test('should get watchlist status from repository', () async {
     // arrange

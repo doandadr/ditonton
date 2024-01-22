@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
-import 'package:core/core.dart';
 import 'package:core/domain/entities/movie/movie.dart';
 import 'package:core/domain/usecases/movie/get_top_rated_movies.dart';
 import 'package:core/presentation/provider/movie/top_rated_movies_notifier.dart';
@@ -28,7 +27,7 @@ void main() {
   final tMovie = Movie(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     originalTitle: 'originalTitle',
     overview: 'overview',
@@ -69,7 +68,7 @@ void main() {
   test('should return error when data is unsuccessful', () async {
     // arrange
     when(mockGetTopRatedMovies.execute())
-        .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+        .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
     // act
     await notifier.fetchTopRatedMovies();
     // assert
