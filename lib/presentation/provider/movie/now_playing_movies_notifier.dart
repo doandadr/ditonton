@@ -1,4 +1,4 @@
-import 'package:ditonton/common/state_enum.dart';
+import 'package:core/core.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/usecases/movie/get_now_playing_movies.dart';
 import 'package:flutter/foundation.dart';
@@ -24,7 +24,7 @@ class NowPlayingMoviesNotifier extends ChangeNotifier {
     final result = await getNowPlayingMovies.execute();
 
     result.fold(
-          (failure) {
+          (Failure failure) {
         _message = failure.message;
         _state = RequestState.Error;
         notifyListeners();

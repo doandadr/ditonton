@@ -2,7 +2,7 @@ import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/entities/movie/movie_detail.dart';
 import 'package:ditonton/domain/usecases/movie/get_movie_detail.dart';
 import 'package:ditonton/domain/usecases/movie/get_movie_recommendations.dart';
-import 'package:ditonton/common/state_enum.dart';
+import 'package:core/core.dart';
 import 'package:ditonton/domain/usecases/movie/get_watchlist_status.dart';
 import 'package:ditonton/domain/usecases/movie/remove_watchlist.dart';
 import 'package:ditonton/domain/usecases/movie/save_watchlist.dart';
@@ -51,7 +51,7 @@ class MovieDetailNotifier extends ChangeNotifier {
     final detailResult = await getMovieDetail.execute(id);
     final recommendationResult = await getMovieRecommendations.execute(id);
     detailResult.fold(
-      (failure) {
+      (Failure failure) {
         _movieState = RequestState.Error;
         _message = failure.message;
         notifyListeners();
@@ -61,7 +61,7 @@ class MovieDetailNotifier extends ChangeNotifier {
         _movie = movie;
         notifyListeners();
         recommendationResult.fold(
-          (failure) {
+          (Failure failure) {
             _recommendationState = RequestState.Error;
             _message = failure.message;
           },
@@ -83,7 +83,7 @@ class MovieDetailNotifier extends ChangeNotifier {
     final result = await saveWatchlist.execute(movie);
 
     await result.fold(
-      (failure) async {
+      (Failure failure) async {
         _watchlistMessage = failure.message;
       },
       (successMessage) async {
@@ -98,7 +98,7 @@ class MovieDetailNotifier extends ChangeNotifier {
     final result = await removeWatchlist.execute(movie);
 
     await result.fold(
-      (failure) async {
+      (Failure failure) async {
         _watchlistMessage = failure.message;
       },
       (successMessage) async {

@@ -1,4 +1,4 @@
-import 'package:ditonton/common/state_enum.dart';
+import '../../../../core/lib/utils/state_enum.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/presentation/pages/movie/now_playing_movies_page.dart';
 import 'package:ditonton/presentation/provider/movie/now_playing_movies_notifier.dart';

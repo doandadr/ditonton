@@ -36,6 +36,8 @@ dependencies:
   path_provider: ^2.1.2
   about:
     path: about
+  core:
+    path: core
 
 dev_dependencies:
   mockito: ^5.4.4

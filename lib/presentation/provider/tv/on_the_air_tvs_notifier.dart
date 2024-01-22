@@ -1,4 +1,4 @@
-import 'package:ditonton/common/state_enum.dart';
+import 'package:core/core.dart';
 import 'package:ditonton/domain/entities/tv/tv.dart';
 import 'package:ditonton/domain/usecases/tv/get_on_the_air_tvs.dart';
 import 'package:flutter/foundation.dart';
@@ -24,7 +24,7 @@ class OnTheAirTvsNotifier extends ChangeNotifier {
     final result = await getOnTheAirTvs.execute();
 
     result.fold(
-          (failure) {
+          (Failure failure) {
         _message = failure.message;
         _state = RequestState.Error;
         notifyListeners();

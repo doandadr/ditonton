@@ -1,4 +1,4 @@
-import 'package:ditonton/common/state_enum.dart';
+import 'package:core/core.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/usecases/movie/get_top_rated_movies.dart';
 import 'package:flutter/foundation.dart';
@@ -24,7 +24,7 @@ class TopRatedMoviesNotifier extends ChangeNotifier {
     final result = await getTopRatedMovies.execute();
 
     result.fold(
-      (failure) {
+      (Failure failure) {
         _message = failure.message;
         _state = RequestState.Error;
         notifyListeners();

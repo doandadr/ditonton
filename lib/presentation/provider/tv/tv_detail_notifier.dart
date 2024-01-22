@@ -2,7 +2,7 @@ import 'package:ditonton/domain/entities/tv/tv.dart';
 import 'package:ditonton/domain/entities/tv/tv_detail.dart';
 import 'package:ditonton/domain/usecases/tv/get_tv_detail.dart';
 import 'package:ditonton/domain/usecases/tv/get_tv_recommendations.dart';
-import 'package:ditonton/common/state_enum.dart';
+import 'package:core/core.dart';
 import 'package:ditonton/domain/usecases/tv/get_watchlist_status.dart';
 import 'package:ditonton/domain/usecases/tv/remove_watchlist.dart';
 import 'package:ditonton/domain/usecases/tv/save_watchlist.dart';
@@ -51,7 +51,7 @@ class TvDetailNotifier extends ChangeNotifier {
     final detailResult = await getTvDetail.execute(id);
     final recommendationResult = await getTvRecommendations.execute(id);
     detailResult.fold(
-          (failure) {
+          (Failure failure) {
         _tvState = RequestState.Error;
         _message = failure.message;
         notifyListeners();
@@ -61,7 +61,7 @@ class TvDetailNotifier extends ChangeNotifier {
         _tv = tv;
         notifyListeners();
         recommendationResult.fold(
-              (failure) {
+              (Failure failure) {
             _recommendationState = RequestState.Error;
             _message = failure.message;
           },
@@ -83,7 +83,7 @@ class TvDetailNotifier extends ChangeNotifier {
     final result = await saveWatchlist.execute(tv);
 
     await result.fold(
-          (failure) async {
+          (Failure failure) async {
         _watchlistMessage = failure.message;
       },
           (successMessage) async {
@@ -98,7 +98,7 @@ class TvDetailNotifier extends ChangeNotifier {
     final result = await removeWatchlist.execute(tv);
 
     await result.fold(
-          (failure) async {
+          (Failure failure) async {
         _watchlistMessage = failure.message;
       },
           (successMessage) async {

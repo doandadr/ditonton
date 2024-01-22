@@ -1,4 +1,4 @@
-import 'package:ditonton/common/state_enum.dart';
+import 'package:core/core.dart';
 import 'package:ditonton/domain/entities/tv/tv.dart';
 import 'package:ditonton/domain/usecases/tv/get_watchlist_tvs.dart';
 import 'package:flutter/foundation.dart';
@@ -23,7 +23,7 @@ class WatchlistTvNotifier extends ChangeNotifier {
 
     final result = await getWatchlistTvs.execute();
     result.fold(
-          (failure) {
+          (Failure failure) {
         _watchlistState = RequestState.Error;
         _message = failure.message;
         notifyListeners();

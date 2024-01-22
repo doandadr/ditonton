@@ -1,6 +1,6 @@
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/usecases/movie/get_now_playing_movies.dart';
-import 'package:ditonton/common/state_enum.dart';
+import 'package:core/core.dart';
 import 'package:ditonton/domain/usecases/movie/get_popular_movies.dart';
 import 'package:ditonton/domain/usecases/movie/get_top_rated_movies.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,7 @@ class MovieListNotifier extends ChangeNotifier {
 
     final result = await getNowPlayingMovies.execute();
     result.fold(
-      (failure) {
+      (Failure failure) {
         _nowPlayingState = RequestState.Error;
         _message = failure.message;
         notifyListeners();
@@ -62,7 +62,7 @@ class MovieListNotifier extends ChangeNotifier {
 
     final result = await getPopularMovies.execute();
     result.fold(
-      (failure) {
+      (Failure failure) {
         _popularMoviesState = RequestState.Error;
         _message = failure.message;
         notifyListeners();
@@ -81,7 +81,7 @@ class MovieListNotifier extends ChangeNotifier {
 
     final result = await getTopRatedMovies.execute();
     result.fold(
-      (failure) {
+      (Failure failure) {
         _topRatedMoviesState = RequestState.Error;
         _message = failure.message;
         notifyListeners();
