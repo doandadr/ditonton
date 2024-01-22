@@ -2,7 +2,7 @@ import 'package:ditonton/data/models/tv/tv_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv/created_by.dart';
 import 'package:ditonton/domain/entities/tv/network.dart';
-import 'package:ditonton/domain/entities/tv/season_model.dart';
+import 'package:ditonton/domain/entities/tv/season.dart';
 import 'package:ditonton/domain/entities/tv/tv.dart';
 import 'package:ditonton/domain/entities/tv/tv_detail.dart';
 
@@ -58,12 +58,10 @@ final testTvDetail = TvDetail(
     posterPath: "/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg",
     seasons: [
       Season(
-          airDate: "2010-12-05",
           episodeCount: 270,
           id: 3627,
           name: "Specials",
           overview: "",
-          posterPath: "/aos6lC1JGYt6ZRL85lgstNsfSeY.jpg",
           seasonNumber: 0,
           voteAverage: 0)
     ],

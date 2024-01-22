@@ -221,12 +221,10 @@ void main() {
         posterPath: "/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg",
         seasons: [
           SeasonModel(
-              airDate: "2010-12-05",
               episodeCount: 270,
               id: 3627,
               name: "Specials",
               overview: "",
-              posterPath: "/aos6lC1JGYt6ZRL85lgstNsfSeY.jpg",
               seasonNumber: 0,
               voteAverage: 0)
         ],
