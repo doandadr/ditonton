@@ -9,12 +9,12 @@ import 'dart:ui' as _i13;
 import 'package:tv/core.dart' as _i9;
 import 'package:core/domain/entities/tv/tv.dart' as _i10;
 import 'package:core/domain/entities/tv/tv_detail.dart' as _i7;
-import 'package:tv/domain/usecases/tv/get_tv_detail.dart' as _i2;
-import 'package:tv/domain/usecases/tv/get_tv_recommendations.dart' as _i3;
-import 'package:tv/domain/usecases/tv/get_watchlist_status.dart' as _i4;
-import 'package:tv/domain/usecases/tv/remove_watchlist.dart' as _i6;
-import 'package:tv/domain/usecases/tv/save_watchlist.dart' as _i5;
-import 'package:tv/presentation/provider/tv/tv_detail_notifier.dart' as _i8;
+import 'package:tv/domain/usecases/get_tv_detail.dart' as _i2;
+import 'package:tv/domain/usecases/get_tv_recommendations.dart' as _i3;
+import 'package:tv/domain/usecases/get_watchlist_status.dart' as _i4;
+import 'package:tv/domain/usecases/remove_watchlist.dart' as _i6;
+import 'package:tv/domain/usecases/save_watchlist.dart' as _i5;
+import 'package:tv/presentation/provider/tv_detail_notifier.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i11;
 

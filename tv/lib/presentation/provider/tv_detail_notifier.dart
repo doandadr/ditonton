@@ -1,11 +1,11 @@
 import 'package:core/domain/entities/tv/tv.dart';
 import 'package:core/domain/entities/tv/tv_detail.dart';
-import 'package:tv/domain/usecases/tv/get_tv_detail.dart';
-import 'package:tv/domain/usecases/tv/get_tv_recommendations.dart';
+import 'package:tv/domain/usecases/get_tv_detail.dart';
+import 'package:tv/domain/usecases/get_tv_recommendations.dart';
 import 'package:core/core.dart';
-import 'package:tv/domain/usecases/tv/get_watchlist_status.dart';
-import 'package:tv/domain/usecases/tv/remove_watchlist.dart';
-import 'package:tv/domain/usecases/tv/save_watchlist.dart';
+import 'package:tv/domain/usecases/get_watchlist_status.dart';
+import 'package:tv/domain/usecases/remove_watchlist.dart';
+import 'package:tv/domain/usecases/save_watchlist.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
 import 'package:core/domain/entities/tv/tv.dart';
-import 'package:tv/domain/usecases/tv/get_top_rated_tvs.dart';
-import 'package:tv/presentation/provider/tv/top_rated_tvs_notifier.dart';
+import 'package:tv/domain/usecases/get_top_rated_tvs.dart';
+import 'package:tv/presentation/provider/top_rated_tvs_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

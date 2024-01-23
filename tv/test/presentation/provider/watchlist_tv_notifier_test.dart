@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
-import 'package:tv/domain/usecases/tv/get_watchlist_tvs.dart';
-import 'package:tv/presentation/provider/tv/watchlist_tv_notifier.dart';
+import 'package:tv/domain/usecases/get_watchlist_tvs.dart';
+import 'package:tv/presentation/provider/watchlist_tv_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

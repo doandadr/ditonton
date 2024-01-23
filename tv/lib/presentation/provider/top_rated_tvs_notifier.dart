@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:core/domain/entities/tv/tv.dart';
-import 'package:tv/domain/usecases/tv/get_top_rated_tvs.dart';
+import 'package:tv/domain/usecases/get_top_rated_tvs.dart';
 import 'package:flutter/foundation.dart';
 
 class TopRatedTvsNotifier extends ChangeNotifier {

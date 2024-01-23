@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:core/domain/entities/tv/tv.dart';
-import 'package:tv/domain/usecases/tv/get_on_the_air_tvs.dart';
-import 'package:tv/domain/usecases/tv/get_popular_tvs.dart';
-import 'package:tv/domain/usecases/tv/get_top_rated_tvs.dart';
+import 'package:tv/domain/usecases/get_on_the_air_tvs.dart';
+import 'package:tv/domain/usecases/get_popular_tvs.dart';
+import 'package:tv/domain/usecases/get_top_rated_tvs.dart';
 import 'package:flutter/foundation.dart';
 
 class TvListNotifier extends ChangeNotifier {

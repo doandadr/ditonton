@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/tv/tv.dart';
 import 'package:core/domain/entities/tv/tv_detail.dart';
-import 'package:tv/presentation/provider/tv/tv_detail_notifier.dart';
+import 'package:tv/presentation/provider/tv_detail_notifier.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

@@ -8,7 +8,7 @@ import 'dart:async' as _i5;
 import 'package:tv/core.dart' as _i6;
 import 'package:core/domain/entities/tv/tv.dart' as _i7;
 import 'package:core/domain/repositories/tv/tv_repository.dart' as _i2;
-import 'package:tv/domain/usecases/tv/get_watchlist_tvs.dart' as _i4;
+import 'package:tv/domain/usecases/get_watchlist_tvs.dart' as _i4;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 

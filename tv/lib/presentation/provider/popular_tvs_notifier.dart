@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:core/domain/entities/tv/tv.dart';
-import 'package:tv/domain/usecases/tv/get_popular_tvs.dart';
+import 'package:tv/domain/usecases/get_popular_tvs.dart';
 import 'package:flutter/foundation.dart';
 
 class PopularTvsNotifier extends ChangeNotifier {

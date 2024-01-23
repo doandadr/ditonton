@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:tv/domain/usecases/tv/remove_watchlist.dart';
+import 'package:tv/domain/usecases/remove_watchlist.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

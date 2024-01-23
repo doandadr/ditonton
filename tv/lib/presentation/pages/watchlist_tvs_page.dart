@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:tv/presentation/provider/tv/watchlist_tv_notifier.dart';
+import 'package:tv/presentation/provider/watchlist_tv_notifier.dart';
 import 'package:tv/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
