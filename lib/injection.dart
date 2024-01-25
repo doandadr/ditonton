@@ -35,6 +35,7 @@ import 'package:movie/presentation/provider/now_playing_movies_notifier.dart';
 import 'package:movie/presentation/provider/popular_movies_notifier.dart';
 import 'package:movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:movie/presentation/provider/watchlist_movie_notifier.dart';
+import 'package:tv/presentation/pages/bloc/search_tvs_bloc.dart';
 import 'package:tv/presentation/provider/on_the_air_tvs_notifier.dart';
 import 'package:tv/presentation/provider/popular_tvs_notifier.dart';
 import 'package:tv/presentation/provider/top_rated_tvs_notifier.dart';
@@ -137,6 +138,11 @@ void init() {
   locator.registerFactory(
     () => WatchlistTvNotifier(
       getWatchlistTvs: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => SearchTvsBloc(
+      locator(),
     ),
   );
 

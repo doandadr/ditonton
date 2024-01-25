@@ -9,6 +9,7 @@ import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/pages/search_movies_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
 import 'package:movie/presentation/pages/watchlist_movies_page.dart';
+import 'package:tv/presentation/pages/bloc/search_tvs_bloc.dart';
 import 'package:tv/presentation/pages/home_tv_page.dart';
 import 'package:tv/presentation/pages/on_the_air_tvs_page.dart';
 import 'package:tv/presentation/pages/popular_tvs_page.dart';
@@ -53,9 +54,6 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<MovieDetailNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<MovieSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
           create: (_) => di.locator<NowPlayingMoviesNotifier>(),
         ),
         ChangeNotifierProvider(
@@ -79,9 +77,6 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<TvDetailNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<TvSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
           create: (_) => di.locator<TopRatedTvsNotifier>(),
         ),
         ChangeNotifierProvider(
@@ -93,6 +88,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistTvNotifier>(),
         ),
+        BlocProvider(
+          create: (_) => di.locator<SearchTvsBloc>(),
+        )
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
