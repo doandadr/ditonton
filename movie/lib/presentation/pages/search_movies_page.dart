@@ -1,4 +1,6 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie/presentation/pages/bloc/search_movies_bloc.dart';
 import 'package:movie/presentation/provider/movie_search_notifier.dart';
 import 'package:movie/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +23,8 @@ class SearchMoviesPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
-              onSubmitted: (query) {
-                Provider.of<MovieSearchNotifier>(context, listen: false)
-                    .fetchMovieSearch(query);
+              onChanged: (query) {
+                context.read<SearchMoviesBloc>().add(OnQueryChanged(query));
               },
               decoration: const InputDecoration(
                 hintText: 'Search movie title',
@@ -37,29 +38,35 @@ class SearchMoviesPage extends StatelessWidget {
               'Search Result',
               style: kHeading6,
             ),
-            Consumer<MovieSearchNotifier>(
-              builder: (context, data, child) {
-                if (data.state == RequestState.Loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (data.state == RequestState.Loaded) {
-                  final result = data.searchResult;
-                  return Expanded(
-                    child: ListView.builder(
-                      padding: const EdgeInsets.all(8),
-                      itemBuilder: (context, index) {
-                        final movie = data.searchResult[index];
-                        return MovieCard(movie);
-                      },
-                      itemCount: result.length,
-                    ),
-                  );
-                } else {
-                  return Expanded(
-                    child: Container(),
-                  );
-                }
+            BlocBuilder<SearchMoviesBloc, SearchMoviesState>(
+              builder: (context, state) {
+                    if (state is SearchLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (state is SearchHasData) {
+                      final result = state.result;
+                      return Expanded(
+                        child: ListView.builder(
+                          padding: const EdgeInsets.all(8),
+                          itemBuilder: (context, index) {
+                            final movie = result[index];
+                            return MovieCard(movie);
+                          },
+                          itemCount: result.length,
+                        ),
+                      );
+                    } else if (state is SearchError) {
+                      return Expanded(
+                        child: Center(
+                          child: Text(state.message),
+                        ),
+                      );
+                    } else {
+                      return Expanded(
+                        child: Container(),
+                      );
+                    }
               },
             ),
           ],
