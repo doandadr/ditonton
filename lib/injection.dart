@@ -16,7 +16,8 @@ import 'package:movie/domain/usecases/get_watchlist_movies.dart';
 import 'package:movie/domain/usecases/get_watchlist_status.dart' as MovieGWS;
 import 'package:movie/domain/usecases/remove_watchlist.dart' as MovieRW;
 import 'package:movie/domain/usecases/save_watchlist.dart' as MovieSW;
-import 'package:movie/presentation/pages/bloc/search_movies_bloc.dart';
+import 'package:movie/presentation/pages/bloc/now_playing/now_playing_movies_bloc.dart';
+import 'package:movie/presentation/pages/bloc/search/search_movies_bloc.dart';
 import 'package:tv/domain/usecases/get_on_the_air_tvs.dart';
 import 'package:tv/domain/usecases/get_popular_tvs.dart';
 import 'package:tv/domain/usecases/get_top_rated_tvs.dart';
@@ -30,7 +31,6 @@ import 'package:movie/domain/usecases/search_movies.dart';
 import 'package:tv/domain/usecases/search_tvs.dart';
 import 'package:movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:movie/presentation/provider/movie_list_notifier.dart';
-import 'package:movie/presentation/provider/now_playing_movies_notifier.dart';
 import 'package:movie/presentation/provider/popular_movies_notifier.dart';
 import 'package:movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:movie/presentation/provider/watchlist_movie_notifier.dart';
@@ -66,7 +66,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => NowPlayingMoviesNotifier(
+    () => NowPlayingMoviesBloc(
       locator(),
     ),
   );
