@@ -5,9 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:movie/domain/usecases/search_movies.dart';
-import 'package:movie/presentation/pages/bloc/search_movies_bloc.dart';
+import 'package:movie/presentation/pages/bloc/search/search_movies_bloc.dart';
 
-import '../../../dummy_data/dummy_objects.dart';
+import '../../../../dummy_data/dummy_objects.dart';
 import 'search_movies_bloc_test.mocks.dart';
 
 @GenerateMocks([SearchMovies])
