@@ -26,7 +26,7 @@ void main() {
 ;  });
 
   blocTest<PopularMoviesBloc, PopularMoviesState>(
-    'should emit [Loading, Data] when data is gotten successfully',
+    'should emit [Loading, HasData] when data is gotten successfully',
     build: () {
       when(mockGetPopularMovies.execute()).thenAnswer((_) async => Right(testMovieList));
       return popularMoviesBloc;
