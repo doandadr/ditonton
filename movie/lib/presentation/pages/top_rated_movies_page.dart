@@ -1,7 +1,5 @@
-import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/pages/bloc/top_rated/top_rated_movies_bloc.dart';
-import 'package:movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:movie/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
