@@ -16,6 +16,7 @@ import 'package:movie/domain/usecases/get_watchlist_movies.dart';
 import 'package:movie/domain/usecases/get_watchlist_status.dart' as MovieGWS;
 import 'package:movie/domain/usecases/remove_watchlist.dart' as MovieRW;
 import 'package:movie/domain/usecases/save_watchlist.dart' as MovieSW;
+import 'package:movie/presentation/pages/bloc/detail/movie_detail_bloc.dart';
 import 'package:movie/presentation/pages/bloc/now_playing/now_playing_movies_bloc.dart';
 import 'package:movie/presentation/pages/bloc/popular/popular_movies_bloc.dart';
 import 'package:movie/presentation/pages/bloc/search/search_movies_bloc.dart';
@@ -31,10 +32,7 @@ import 'package:tv/domain/usecases/remove_watchlist.dart' as TvRW;
 import 'package:tv/domain/usecases/save_watchlist.dart' as TvSW;
 import 'package:movie/domain/usecases/search_movies.dart';
 import 'package:tv/domain/usecases/search_tvs.dart';
-import 'package:movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:movie/presentation/provider/movie_list_notifier.dart';
-import 'package:movie/presentation/provider/popular_movies_notifier.dart';
-import 'package:movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:movie/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:tv/presentation/pages/bloc/search_tvs_bloc.dart';
 import 'package:tv/presentation/provider/on_the_air_tvs_notifier.dart';
@@ -59,7 +57,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => MovieDetailNotifier(
+    () => MovieDetailBloc(
       getMovieDetail: locator(),
       getMovieRecommendations: locator(),
       getWatchListStatus: locator(),

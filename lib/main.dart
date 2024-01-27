@@ -1,6 +1,7 @@
 import 'package:about/about.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie/presentation/pages/bloc/detail/movie_detail_bloc.dart';
 import 'package:movie/presentation/pages/bloc/now_playing/now_playing_movies_bloc.dart';
 import 'package:movie/presentation/pages/bloc/popular/popular_movies_bloc.dart';
 import 'package:movie/presentation/pages/bloc/search/search_movies_bloc.dart';
@@ -20,10 +21,7 @@ import 'package:tv/presentation/pages/search_tvs_page.dart';
 import 'package:tv/presentation/pages/top_rated_tvs_page.dart';
 import 'package:tv/presentation/pages/tv_detail_page.dart';
 import 'package:tv/presentation/pages/watchlist_tvs_page.dart';
-import 'package:movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:movie/presentation/provider/movie_list_notifier.dart';
-import 'package:movie/presentation/provider/popular_movies_notifier.dart';
-import 'package:movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:movie/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:tv/presentation/provider/on_the_air_tvs_notifier.dart';
 import 'package:tv/presentation/provider/popular_tvs_notifier.dart';
@@ -50,8 +48,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieListNotifier>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieDetailNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<MovieDetailBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<NowPlayingMoviesBloc>(),
