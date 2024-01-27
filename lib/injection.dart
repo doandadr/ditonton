@@ -17,6 +17,7 @@ import 'package:movie/domain/usecases/get_watchlist_status.dart' as MovieGWS;
 import 'package:movie/domain/usecases/remove_watchlist.dart' as MovieRW;
 import 'package:movie/domain/usecases/save_watchlist.dart' as MovieSW;
 import 'package:movie/presentation/pages/bloc/now_playing/now_playing_movies_bloc.dart';
+import 'package:movie/presentation/pages/bloc/popular/popular_movies_bloc.dart';
 import 'package:movie/presentation/pages/bloc/search/search_movies_bloc.dart';
 import 'package:tv/domain/usecases/get_on_the_air_tvs.dart';
 import 'package:tv/domain/usecases/get_popular_tvs.dart';
@@ -71,7 +72,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => PopularMoviesNotifier(
+    () => PopularMoviesBloc(
       locator(),
     ),
   );
