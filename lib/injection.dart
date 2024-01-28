@@ -35,14 +35,15 @@ import 'package:tv/domain/usecases/remove_watchlist.dart' as TvRW;
 import 'package:tv/domain/usecases/save_watchlist.dart' as TvSW;
 import 'package:movie/domain/usecases/search_movies.dart';
 import 'package:tv/domain/usecases/search_tvs.dart';
-import 'package:tv/presentation/pages/bloc/search_tvs_bloc.dart';
-import 'package:tv/presentation/provider/on_the_air_tvs_notifier.dart';
-import 'package:tv/presentation/provider/popular_tvs_notifier.dart';
-import 'package:tv/presentation/provider/top_rated_tvs_notifier.dart';
-import 'package:tv/presentation/provider/tv_detail_notifier.dart';
-import 'package:tv/presentation/provider/tv_list_notifier.dart';
-import 'package:tv/presentation/provider/watchlist_tv_notifier.dart';
+import 'package:tv/presentation/pages/bloc/detail/tv_detail_bloc.dart';
+import 'package:tv/presentation/pages/bloc/on_the_air/on_the_air_tvs_bloc.dart';
+import 'package:tv/presentation/pages/bloc/popular/popular_tvs_bloc.dart';
+import 'package:tv/presentation/pages/bloc/recommendations/tv_recommendations_bloc.dart';
+import 'package:tv/presentation/pages/bloc/search/search_tvs_bloc.dart';
+import 'package:tv/presentation/pages/bloc/top_rated/top_rated_tvs_bloc.dart';
+import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
+import 'package:tv/presentation/pages/bloc/watchlist/tv_watchlist_bloc.dart';
 
 final locator = GetIt.instance;
 
@@ -98,7 +99,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => OnTheAirTvsNotifier(
+    () => OnTheAirTvsBloc(
       locator(),
     ),
   );

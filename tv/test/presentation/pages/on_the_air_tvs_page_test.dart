@@ -1,27 +1,36 @@
-import 'package:core/core.dart';
-import 'package:core/domain/entities/tv/tv.dart';
-import 'package:tv/presentation/pages/on_the_air_tvs_page.dart';
-import 'package:tv/presentation/provider/on_the_air_tvs_notifier.dart';
+import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tv/presentation/pages/bloc/on_the_air/on_the_air_tvs_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:tv/presentation/pages/on_the_air_tvs_page.dart';
 
-import 'on_the_air_tvs_page_test.mocks.dart';
+import '../../dummy_data/dummy_objects.dart';
 
+class MockOnTheAirTvsBloc
+    extends MockBloc<OnTheAirTvsEvent, OnTheAirTvsState>
+    implements OnTheAirTvsBloc {}
 
-@GenerateMocks([OnTheAirTvsNotifier])
+class FakeOnTheAirTvsEvent extends Fake implements OnTheAirTvsEvent {}
+
+class FakeOnTheAirTvsState extends Fake implements OnTheAirTvsState {}
+
 void main() {
-  late MockOnTheAirTvsNotifier mockNotifier;
+  late MockOnTheAirTvsBloc mockBloc;
+
+  setUpAll(() {
+    registerFallbackValue(FakeOnTheAirTvsEvent());
+    registerFallbackValue(FakeOnTheAirTvsState());
+  });
 
   setUp(() {
-    mockNotifier = MockOnTheAirTvsNotifier();
+    mockBloc = MockOnTheAirTvsBloc();
   });
 
   Widget makeTestableWidget(Widget body) {
-    return ChangeNotifierProvider<OnTheAirTvsNotifier>.value(
-      value: mockNotifier,
+    return BlocProvider<OnTheAirTvsBloc>.value(
+      value: mockBloc,
       child: MaterialApp(
         home: body,
       ),
@@ -30,7 +39,7 @@ void main() {
 
   testWidgets('Page should display center progress bar when loading',
           (WidgetTester tester) async {
-        when(mockNotifier.state).thenReturn(RequestState.Loading);
+        when(() => mockBloc.state).thenReturn(OnTheAirTvsLoading());
 
         final progressBarFinder = find.byType(CircularProgressIndicator);
         final centerFinder = find.byType(Center);
@@ -43,8 +52,7 @@ void main() {
 
   testWidgets('Page should display ListView when data is loaded',
           (WidgetTester tester) async {
-        when(mockNotifier.state).thenReturn(RequestState.Loaded);
-        when(mockNotifier.tvs).thenReturn(<Tv>[]);
+        when(() => mockBloc.state).thenReturn(OnTheAirTvsHasData(testTvList));
 
         final listViewFinder = find.byType(ListView);
 
@@ -55,8 +63,7 @@ void main() {
 
   testWidgets('Page should display text with message when Error',
           (WidgetTester tester) async {
-        when(mockNotifier.state).thenReturn(RequestState.Error);
-        when(mockNotifier.message).thenReturn('Error message');
+        when(() => mockBloc.state).thenReturn(OnTheAirTvsError('Error message'));
 
         final textFinder = find.byKey(const Key('error_message'));
 

@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
-import 'package:tv/presentation/provider/on_the_air_tvs_notifier.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tv/presentation/pages/bloc/on_the_air/on_the_air_tvs_bloc.dart';
 import 'package:tv/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,9 +18,9 @@ class _OnTheAirTvsPageState extends State<OnTheAirTvsPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<OnTheAirTvsNotifier>(context, listen: false)
-            .fetchOnTheAirTvs());
+    Future.microtask(() {
+      context.read<OnTheAirTvsBloc>().add(FetchOnTheAirTvs());
+    });
   }
 
   @override
@@ -30,26 +31,28 @@ class _OnTheAirTvsPageState extends State<OnTheAirTvsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<OnTheAirTvsNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (data.state == RequestState.Loaded) {
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  final tv = data.tvs[index];
-                  return TvCard(tv);
-                },
-                itemCount: data.tvs.length,
-              );
-            } else {
-              return Center(
-                key: const Key('error_message'),
-                child: Text(data.message),
-              );
-            }
+        child: BlocBuilder<OnTheAirTvsBloc, OnTheAirTvsState>(
+          builder: (context, state) {
+                if (state is OnTheAirTvsLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is OnTheAirTvsHasData) {
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      final tv = state.result[index];
+                      return TvCard(tv);
+                    },
+                    itemCount: state.result.length,
+                  );
+                } else if (state is OnTheAirTvsError) {
+                  return Center(
+                    key: const Key('error_message'),
+                    child: Text(state.message),
+                  );
+                } else {
+                  return Container();
+                }
           },
         ),
       ),

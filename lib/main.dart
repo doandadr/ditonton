@@ -13,7 +13,13 @@ import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/pages/search_movies_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
 import 'package:movie/presentation/pages/watchlist_movies_page.dart';
-import 'package:tv/presentation/pages/bloc/search_tvs_bloc.dart';
+import 'package:tv/presentation/pages/bloc/detail/tv_detail_bloc.dart';
+import 'package:tv/presentation/pages/bloc/on_the_air/on_the_air_tvs_bloc.dart';
+import 'package:tv/presentation/pages/bloc/popular/popular_tvs_bloc.dart';
+import 'package:tv/presentation/pages/bloc/recommendations/tv_recommendations_bloc.dart';
+import 'package:tv/presentation/pages/bloc/search/search_tvs_bloc.dart';
+import 'package:tv/presentation/pages/bloc/top_rated/top_rated_tvs_bloc.dart';
+import 'package:tv/presentation/pages/bloc/watchlist/tv_watchlist_bloc.dart';
 import 'package:tv/presentation/pages/home_tv_page.dart';
 import 'package:tv/presentation/pages/on_the_air_tvs_page.dart';
 import 'package:tv/presentation/pages/popular_tvs_page.dart';
@@ -21,13 +27,6 @@ import 'package:tv/presentation/pages/search_tvs_page.dart';
 import 'package:tv/presentation/pages/top_rated_tvs_page.dart';
 import 'package:tv/presentation/pages/tv_detail_page.dart';
 import 'package:tv/presentation/pages/watchlist_tvs_page.dart';
-import 'package:movie/presentation/provider/movie_list_notifier.dart';
-import 'package:tv/presentation/provider/on_the_air_tvs_notifier.dart';
-import 'package:tv/presentation/provider/popular_tvs_notifier.dart';
-import 'package:tv/presentation/provider/top_rated_tvs_notifier.dart';
-import 'package:tv/presentation/provider/tv_detail_notifier.dart';
-import 'package:tv/presentation/provider/tv_list_notifier.dart';
-import 'package:tv/presentation/provider/watchlist_tv_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -72,8 +71,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<TopRatedTvsNotifier>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<OnTheAirTvsNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<OnTheAirTvsBloc>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<PopularTvsNotifier>(),
