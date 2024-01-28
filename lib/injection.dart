@@ -109,13 +109,8 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => TopRatedTvsNotifier(
-      getTopRatedTvs: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => WatchlistTvNotifier(
-      getWatchlistTvs: locator(),
+    () => TopRatedTvsBloc(
+      locator(),
     ),
   );
   locator.registerFactory(

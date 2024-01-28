@@ -76,15 +76,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<OnTheAirTvsBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<PopularTvsNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<TopRatedTvsBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<PopularTvsBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<SearchTvsBloc>(),
-        )
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
