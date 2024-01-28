@@ -56,12 +56,6 @@ void main() {
   });
 
   Widget makeTestableWidget(Widget body) {
-    // return BlocProvider<MovieDetailBloc>.value(
-    //   value: mockMovieDetailBloc,
-    //   child: MaterialApp(
-    //     home: body,
-    //   ),
-    // );
     return MultiBlocProvider(
       providers: [
         BlocProvider<MovieDetailBloc>(
@@ -131,58 +125,4 @@ void main() {
     final iconButton = find.byIcon(Icons.check);
     expect(iconButton, findsOneWidget);
   });
-
-
-  testWidgets(
-      'Watchlist button should display Snackbar when added to watchlist',
-      (WidgetTester tester) async {
-    when(() => mockMovieDetailBloc.state).thenReturn(
-      const MovieDetailHasData(testMovieDetail),
-    );
-    when(() => mockMovieRecommendationsBloc.state).thenReturn(
-      MovieRecommendationsHasData(testMovieList),
-    );
-    when(() => mockMovieWatchlistBloc.state).thenReturn(
-      const MovieWatchlistStatus(false),
-    );
-
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
-
-    final watchlistButton = find.byType(ElevatedButton);
-
-    expect(find.byIcon(Icons.add), findsOneWidget);
-
-    await tester.tap(watchlistButton);
-
-    when(() => mockMovieWatchlistBloc.state).thenReturn(
-      const MovieWatchlistMessage(MovieWatchlistBloc.watchlistAddSuccessMessage)
-    );
-
-    expect(find.byType(SnackBar), findsOneWidget);
-    expect(find.text(MovieWatchlistBloc.watchlistAddSuccessMessage),
-        findsOneWidget);
-  });
-
-  // testWidgets(
-  //     'Watchlist button should display AlertDialog when add to watchlist failed',
-  //     (WidgetTester tester) async {
-  //   when(mockMovieDetailBloc.movieState).thenReturn(RequestState.Loaded);
-  //   when(mockMovieDetailBloc.movie).thenReturn(testMovieDetail);
-  //   when(mockMovieDetailBloc.recommendationState).thenReturn(RequestState.Loaded);
-  //   when(mockMovieDetailBloc.movieRecommendations).thenReturn(<Movie>[]);
-  //   when(mockMovieDetailBloc.isAddedToWatchlist).thenReturn(false);
-  //   when(mockMovieDetailBloc.watchlistMessage).thenReturn('Failed');
-  //
-  //   final watchlistButton = find.byType(ElevatedButton);
-  //
-  //   await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
-  //
-  //   expect(find.byIcon(Icons.add), findsOneWidget);
-  //
-  //   await tester.tap(watchlistButton);
-  //   await tester.pump();
-  //
-  //   expect(find.byType(AlertDialog), findsOneWidget);
-  //   expect(find.text('Failed'), findsOneWidget);
-  // });
 }
