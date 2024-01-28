@@ -33,7 +33,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HttpSSLPinning.init();
   di.init();
   runApp(MyApp());
 }
@@ -98,7 +100,7 @@ class MyApp extends StatelessWidget {
             case aboutPageRoute:
               return MaterialPageRoute(builder: (_) => AboutPage());
 
-          // Movies
+            // Movies
             case homeMoviePageRoute:
               return MaterialPageRoute(builder: (_) => HomeMoviePage());
             case nowPlayingMoviesPageRoute:
@@ -117,7 +119,7 @@ class MyApp extends StatelessWidget {
               return CupertinoPageRoute(builder: (_) => SearchMoviesPage());
             case watchlistMoviesPageRoute:
               return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
-          // Tv
+            // Tv
             case homeTvPageRoute:
               return MaterialPageRoute(builder: (_) => HomeTvPage());
             case onTheAirTvsPageRoute:
