@@ -83,19 +83,21 @@ void init() {
 
   // TV
   locator.registerFactory(
-    () => TvListNotifier(
-      getOnTheAirTvs: locator(),
-      getPopularTvs: locator(),
-      getTopRatedTvs: locator(),
+    () => TvDetailBloc(
+      getTvDetail: locator(),
     ),
   );
   locator.registerFactory(
-    () => TvDetailNotifier(
-      getTvDetail: locator(),
+    () => TvRecommendationsBloc(
       getTvRecommendations: locator(),
-      getWatchListStatus: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvWatchlistBloc(
       saveWatchlist: locator(),
       removeWatchlist: locator(),
+      getWatchListStatus: locator(),
+      getWatchlistTvs: locator(),
     ),
   );
   locator.registerFactory(

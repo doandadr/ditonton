@@ -70,14 +70,14 @@ class MyApp extends StatelessWidget {
         ),
 
         // TV SERIES
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvListNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<TvDetailBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvDetailNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<TvRecommendationsBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedTvsNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<TvWatchlistBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<OnTheAirTvsBloc>(),
