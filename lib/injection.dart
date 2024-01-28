@@ -104,7 +104,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => PopularTvsNotifier(
+    () => PopularTvsBloc(
       locator(),
     ),
   );

@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/pages/bloc/detail/movie_detail_bloc.dart';
 import 'package:movie/presentation/pages/bloc/now_playing/now_playing_movies_bloc.dart';
 import 'package:movie/presentation/pages/bloc/popular/popular_movies_bloc.dart';
+import 'package:movie/presentation/pages/bloc/recommendations/movie_recommendations_bloc.dart';
 import 'package:movie/presentation/pages/bloc/search/search_movies_bloc.dart';
 import 'package:movie/presentation/pages/bloc/top_rated/top_rated_movies_bloc.dart';
+import 'package:movie/presentation/pages/bloc/watchlist/movie_watchlist_bloc.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie/presentation/pages/home_movie_page.dart';
 import 'package:movie/presentation/pages/now_playing_movies_page.dart';
@@ -77,8 +79,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<PopularTvsNotifier>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistTvNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<PopularTvsBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<SearchTvsBloc>(),
