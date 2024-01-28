@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/pages/bloc/detail/movie_detail_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:movie/presentation/pages/bloc/recommendations/movie_recommendations_bloc.dart';
+import 'package:movie/presentation/pages/bloc/watchlist/movie_watchlist_bloc.dart';
 
 class MovieDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/movie-detail';
@@ -24,8 +26,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     super.initState();
     Future.microtask(() {
       context.read<MovieDetailBloc>().add(FetchMovieDetails(widget.id));
-      context.read<MovieDetailBloc>().add(FetchMovieRecommendations(widget.id));
-      context.read<MovieDetailBloc>().add(FetchMovieWatchlistStatus(widget.id));
+      context.read<MovieRecommendationsBloc>().add(FetchMovieRecommendations(widget.id));
+      context.read<MovieWatchlistBloc>().add(FetchMovieWatchlistStatus(widget.id));
     });
   }
 
@@ -59,12 +61,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 class DetailContent extends StatelessWidget {
   final MovieDetail movie;
 
-  // final List<Movie> recommendations;
-  // final bool isAddedWatchlist;
-
-  const DetailContent(this.movie,
-      // this.recommendations, this.isAddedWatchlist,
-      {super.key});
+  const DetailContent(this.movie, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +103,7 @@ class DetailContent extends StatelessWidget {
                               movie.title,
                               style: kHeading5,
                             ),
-                            BlocConsumer<MovieDetailBloc, MovieDetailState>(
+                            BlocConsumer<MovieWatchlistBloc, MovieWatchlistState>(
                               builder: (context, state) {
                                 if (state is MovieWatchlistLoading) {
                                   return const Center(
@@ -119,11 +116,11 @@ class DetailContent extends StatelessWidget {
                                     onPressed: () async {
                                       if (state.isAddedToWatchlist) {
                                         context
-                                            .read<MovieDetailBloc>()
+                                            .read<MovieWatchlistBloc>()
                                             .add(SaveMovieWatchlist(movie));
                                       } else {
                                         context
-                                            .read<MovieDetailBloc>()
+                                            .read<MovieWatchlistBloc>()
                                             .add(RemoveMovieWatchlist(movie));
                                       }
                                     },
@@ -142,14 +139,14 @@ class DetailContent extends StatelessWidget {
                                 }
                               },
                               listener: (BuildContext context,
-                                  MovieDetailState state) {
+                                  MovieWatchlistState state) {
                                 if (state is MovieWatchlistMessage) {
                                   final message = state.message;
                                   if (message ==
-                                          MovieDetailBloc
+                                          MovieWatchlistBloc
                                               .watchlistAddSuccessMessage ||
                                       message ==
-                                          MovieDetailBloc
+                                          MovieWatchlistBloc
                                               .watchlistRemoveSuccessMessage) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         SnackBar(content: Text(message)));
@@ -199,7 +196,7 @@ class DetailContent extends StatelessWidget {
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            BlocBuilder<MovieDetailBloc, MovieDetailState>(
+                            BlocBuilder<MovieRecommendationsBloc, MovieRecommendationsState>(
                               builder: (context, state) {
                                 if (state is MovieRecommendationsLoading) {
                                   return const Center(
