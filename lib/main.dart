@@ -22,7 +22,6 @@ import 'package:tv/presentation/pages/top_rated_tvs_page.dart';
 import 'package:tv/presentation/pages/tv_detail_page.dart';
 import 'package:tv/presentation/pages/watchlist_tvs_page.dart';
 import 'package:movie/presentation/provider/movie_list_notifier.dart';
-import 'package:movie/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:tv/presentation/provider/on_the_air_tvs_notifier.dart';
 import 'package:tv/presentation/provider/popular_tvs_notifier.dart';
 import 'package:tv/presentation/provider/top_rated_tvs_notifier.dart';
@@ -45,9 +44,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         // Movies
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieListNotifier>(),
-        ),
         BlocProvider(
           create: (_) => di.locator<MovieDetailBloc>(),
         ),
@@ -59,9 +55,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<PopularMoviesBloc>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistMovieNotifier>(),
         ),
         BlocProvider(
           create: (_) => di.locator<SearchMoviesBloc>(),
