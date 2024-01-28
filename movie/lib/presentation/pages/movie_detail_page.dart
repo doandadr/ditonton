@@ -26,8 +26,12 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     super.initState();
     Future.microtask(() {
       context.read<MovieDetailBloc>().add(FetchMovieDetails(widget.id));
-      context.read<MovieRecommendationsBloc>().add(FetchMovieRecommendations(widget.id));
-      context.read<MovieWatchlistBloc>().add(FetchMovieWatchlistStatus(widget.id));
+      context
+          .read<MovieRecommendationsBloc>()
+          .add(FetchMovieRecommendations(widget.id));
+      context
+          .read<MovieWatchlistBloc>()
+          .add(FetchMovieWatchlistStatus(widget.id));
     });
   }
 
@@ -103,7 +107,8 @@ class DetailContent extends StatelessWidget {
                               movie.title,
                               style: kHeading5,
                             ),
-                            BlocConsumer<MovieWatchlistBloc, MovieWatchlistState>(
+                            BlocConsumer<MovieWatchlistBloc,
+                                MovieWatchlistState>(
                               builder: (context, state) {
                                 if (state is MovieWatchlistLoading) {
                                   return const Center(
@@ -196,7 +201,8 @@ class DetailContent extends StatelessWidget {
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            BlocBuilder<MovieRecommendationsBloc, MovieRecommendationsState>(
+                            BlocBuilder<MovieRecommendationsBloc,
+                                MovieRecommendationsState>(
                               builder: (context, state) {
                                 if (state is MovieRecommendationsLoading) {
                                   return const Center(
