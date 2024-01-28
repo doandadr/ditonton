@@ -5,9 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tv/domain/usecases/search_tvs.dart';
-import 'package:tv/presentation/pages/bloc/search_tvs_bloc.dart';
+import 'package:tv/presentation/pages/bloc/search/search_tvs_bloc.dart';
 
-import '../../../dummy_data/dummy_objects.dart';
+import '../../../../dummy_data/dummy_objects.dart';
 import 'search_tvs_bloc_test.mocks.dart';
 
 @GenerateMocks([SearchTvs])
@@ -24,7 +24,7 @@ void main() {
     expect(searchBloc.state, SearchEmpty());
   });
 
-  final testQuery = 'game of thrones';
+  final testQuery = 'spiderman';
 
   blocTest<SearchTvsBloc, SearchTvsState>(
     'should emit [Loading, HasData] when data is gotten successfully',
