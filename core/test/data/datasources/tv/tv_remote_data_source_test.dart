@@ -27,7 +27,7 @@ void main() {
 
   group('get On The Air Tv', () {
     final tTvList = TvResponse.fromJson(
-            json.decode(readJson('dummy_data/tv/on_the_air.json')))
+            json.decode(readJson('dummy_data\\tv\\on_the_air.json')))
         .tvList;
 
     test('should return list of Tv Model when the response code is 200',
@@ -35,7 +35,7 @@ void main() {
       // arrange
       when(mockHttpClient.get(Uri.parse("$baseUrl/tv/on_the_air?$apiKey")))
           .thenAnswer((_) async => http.Response(
-                  readJson('dummy_data/tv/on_the_air.json'), 200,
+                  readJson('dummy_data\\tv\\on_the_air.json'), 200,
                   headers: {
                     HttpHeaders.contentTypeHeader:
                         'application/json; charset=utf-8',
@@ -62,7 +62,7 @@ void main() {
 
   group('get Popular Tv', () {
     final tTvList =
-        TvResponse.fromJson(json.decode(readJson('dummy_data/tv/popular.json')))
+        TvResponse.fromJson(json.decode(readJson('dummy_data\\tv\\popular.json')))
             .tvList;
 
     test('should return list of Tv Model when the response code is 200',
@@ -70,7 +70,7 @@ void main() {
       // arrange
       when(mockHttpClient.get(Uri.parse("$baseUrl/tv/popular?$apiKey")))
           .thenAnswer((_) async => http.Response(
-                  readJson('dummy_data/tv/popular.json'), 200,
+                  readJson('dummy_data\\tv\\popular.json'), 200,
                   headers: {
                     HttpHeaders.contentTypeHeader:
                         'application/json; charset=utf-8',
@@ -97,14 +97,14 @@ void main() {
 
   group('get Top Rated Tv', () {
     final tTvList = TvResponse.fromJson(
-            json.decode(readJson('dummy_data/tv/top_rated.json')))
+            json.decode(readJson('dummy_data\\tv\\top_rated.json')))
         .tvList;
 
     test('should return list of tvs when response code is 200 ', () async {
       // arrange
       when(mockHttpClient.get(Uri.parse('$baseUrl/tv/top_rated?$apiKey')))
           .thenAnswer((_) async =>
-              http.Response(readJson('dummy_data/tv/top_rated.json'), 200));
+              http.Response(readJson('dummy_data\\tv\\top_rated.json'), 200));
       // act
       final result = await dataSource.getTopRatedTvs();
       // assert
@@ -126,13 +126,13 @@ void main() {
   group('get tv detail', () {
     const tId = 1;
     final tTvDetail = TvDetailResponse.fromJson(
-        json.decode(readJson('dummy_data/tv/tv_detail.json')));
+        json.decode(readJson('dummy_data\\tv\\tv_detail.json')));
 
     test('should return tv detail when the response code is 200', () async {
       // arrange
       when(mockHttpClient.get(Uri.parse('$baseUrl/tv/$tId?$apiKey')))
           .thenAnswer((_) async => http.Response(
-                  readJson('dummy_data/tv/tv_detail.json'), 200,
+                  readJson('dummy_data\\tv\\tv_detail.json'), 200,
                   headers: {
                     HttpHeaders.contentTypeHeader:
                         'application/json; charset=utf-8',
@@ -157,7 +157,7 @@ void main() {
 
   group('get tv recommendations', () {
     final tTvList = TvResponse.fromJson(
-            json.decode(readJson('dummy_data/tv/tv_recommendations.json')))
+            json.decode(readJson('dummy_data\\tv\\tv_recommendations.json')))
         .tvList;
     const tId = 1;
 
@@ -167,7 +167,7 @@ void main() {
       when(mockHttpClient
               .get(Uri.parse('$baseUrl/tv/$tId/recommendations?$apiKey')))
           .thenAnswer((_) async => http.Response(
-                  readJson('dummy_data/tv/tv_recommendations.json'), 200,
+                  readJson('dummy_data\\tv\\tv_recommendations.json'), 200,
                   headers: {
                     HttpHeaders.contentTypeHeader:
                         'application/json; charset=utf-8',
@@ -193,7 +193,7 @@ void main() {
 
   group('search tvs', () {
     final tSearchResult = TvResponse.fromJson(
-            json.decode(readJson('dummy_data/tv/search_got_tv.json')))
+            json.decode(readJson('dummy_data\\tv\\search_got_tv.json')))
         .tvList;
     const tQuery = 'Game Of Thrones';
 
@@ -202,7 +202,7 @@ void main() {
       when(mockHttpClient
               .get(Uri.parse('$baseUrl/search/tv?$apiKey&query=$tQuery')))
           .thenAnswer((_) async => http.Response(
-                  readJson('dummy_data/tv/search_got_tv.json'), 200,
+                  readJson('dummy_data\\tv\\search_got_tv.json'), 200,
                   headers: {
                     HttpHeaders.contentTypeHeader:
                         'application/json; charset=utf-8',
