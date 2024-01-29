@@ -3,7 +3,6 @@ import 'package:core/core.dart';
 import 'package:core/domain/entities/tv/tv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:tv/presentation/pages/bloc/on_the_air/on_the_air_tvs_bloc.dart';
 import 'package:tv/presentation/pages/bloc/top_rated/top_rated_tvs_bloc.dart';
 

@@ -44,7 +44,7 @@ void main() {
     'should emit [Loading, Empty] when data is empty',
     build: () {
       when(mockGetOnTheAirTvs.execute())
-          .thenAnswer((_) async => Right([]));
+          .thenAnswer((_) async => const Right([]));
       return onTheAirTvsBloc;
     },
     act: (bloc) => bloc.add(FetchOnTheAirTvs()),
@@ -60,14 +60,14 @@ void main() {
     'should emit [Loading, Error] when get now playing tvs is unsuccessful',
     build: () {
       when(mockGetOnTheAirTvs.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return onTheAirTvsBloc;
     },
     act: (bloc) => bloc.add(FetchOnTheAirTvs()),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       OnTheAirTvsLoading(),
-      OnTheAirTvsError('Server Failure'),
+      const OnTheAirTvsError('Server Failure'),
     ],
     verify: (bloc) => verify(mockGetOnTheAirTvs.execute()),
   );
