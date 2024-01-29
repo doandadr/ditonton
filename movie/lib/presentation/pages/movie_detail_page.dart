@@ -122,12 +122,13 @@ class DetailContent extends StatelessWidget {
                                       if (state.isAddedToWatchlist) {
                                         context
                                             .read<MovieWatchlistBloc>()
-                                            .add(SaveMovieWatchlist(movie));
+                                            .add(RemoveMovieWatchlist(movie));
                                       } else {
                                         context
                                             .read<MovieWatchlistBloc>()
-                                            .add(RemoveMovieWatchlist(movie));
+                                            .add(SaveMovieWatchlist(movie));
                                       }
+                                      context.read<MovieWatchlistBloc>().add(FetchMovieWatchlistStatus(movie.id));
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,

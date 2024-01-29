@@ -13,6 +13,7 @@ class TvDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/tv-detail';
 
   final int id;
+
   const TvDetailPage({super.key, required this.id});
 
   @override
@@ -28,9 +29,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
       context
           .read<TvRecommendationsBloc>()
           .add(FetchTvRecommendations(widget.id));
-      context
-          .read<TvWatchlistBloc>()
-          .add(FetchTvWatchlistStatus(widget.id));
+      context.read<TvWatchlistBloc>().add(FetchTvWatchlistStatus(widget.id));
     });
   }
 
@@ -106,8 +105,7 @@ class DetailContent extends StatelessWidget {
                               tv.name,
                               style: kHeading5,
                             ),
-                            BlocConsumer<TvWatchlistBloc,
-                                TvWatchlistState>(
+                            BlocConsumer<TvWatchlistBloc, TvWatchlistState>(
                               builder: (context, state) {
                                 if (state is TvWatchlistLoading) {
                                   return const Center(
@@ -121,12 +119,13 @@ class DetailContent extends StatelessWidget {
                                       if (state.isAddedToWatchlist) {
                                         context
                                             .read<TvWatchlistBloc>()
-                                            .add(SaveTvWatchlist(tv));
+                                            .add(RemoveTvWatchlist(tv));
                                       } else {
                                         context
                                             .read<TvWatchlistBloc>()
-                                            .add(RemoveTvWatchlist(tv));
+                                            .add(SaveTvWatchlist(tv));
                                       }
+                                      context.read<TvWatchlistBloc>().add(FetchTvWatchlistStatus(tv.id));
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
@@ -147,8 +146,8 @@ class DetailContent extends StatelessWidget {
                                 if (state is TvWatchlistMessage) {
                                   final message = state.message;
                                   if (message ==
-                                      TvWatchlistBloc
-                                          .watchlistAddSuccessMessage ||
+                                          TvWatchlistBloc
+                                              .watchlistAddSuccessMessage ||
                                       message ==
                                           TvWatchlistBloc
                                               .watchlistRemoveSuccessMessage) {
@@ -166,7 +165,8 @@ class DetailContent extends StatelessWidget {
                                   }
                                 }
                               },
-                            ),                            Text(
+                            ),
+                            Text(
                               _showGenres(tv.genres),
                             ),
                             Text(
@@ -211,8 +211,7 @@ class DetailContent extends StatelessWidget {
                                   );
                                 } else if (state is TvRecommendationsError) {
                                   return Text(state.message);
-                                } else if (state
-                                is TvRecommendationsHasData) {
+                                } else if (state is TvRecommendationsHasData) {
                                   return SizedBox(
                                     height: 150,
                                     child: ListView.builder(
@@ -231,20 +230,20 @@ class DetailContent extends StatelessWidget {
                                             },
                                             child: ClipRRect(
                                               borderRadius:
-                                              const BorderRadius.all(
+                                                  const BorderRadius.all(
                                                 Radius.circular(8),
                                               ),
                                               child: CachedNetworkImage(
                                                 imageUrl:
-                                                'https://image.tmdb.org/t/p/w500${tv.posterPath}',
+                                                    'https://image.tmdb.org/t/p/w500${tv.posterPath}',
                                                 placeholder: (context, url) =>
-                                                const Center(
+                                                    const Center(
                                                   child:
-                                                  CircularProgressIndicator(),
+                                                      CircularProgressIndicator(),
                                                 ),
                                                 errorWidget:
                                                     (context, url, error) =>
-                                                const Icon(Icons.error),
+                                                        const Icon(Icons.error),
                                               ),
                                             ),
                                           ),
