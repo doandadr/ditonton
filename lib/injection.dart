@@ -41,7 +41,6 @@ import 'package:tv/presentation/pages/bloc/popular/popular_tvs_bloc.dart';
 import 'package:tv/presentation/pages/bloc/recommendations/tv_recommendations_bloc.dart';
 import 'package:tv/presentation/pages/bloc/search/search_tvs_bloc.dart';
 import 'package:tv/presentation/pages/bloc/top_rated/top_rated_tvs_bloc.dart';
-import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:tv/presentation/pages/bloc/watchlist/tv_watchlist_bloc.dart';
 
@@ -59,6 +58,14 @@ void init() {
     () => MovieRecommendationsBloc(
       getMovieRecommendations: locator(),
     ),
+  );
+  locator.registerFactory(
+      () => MovieWatchlistBloc(
+        saveWatchlist: locator(),
+        removeWatchlist: locator(),
+        getWatchListStatus: locator(),
+        getWatchlistMovies: locator(),
+      )
   );
   locator.registerFactory(
     () => NowPlayingMoviesBloc(
