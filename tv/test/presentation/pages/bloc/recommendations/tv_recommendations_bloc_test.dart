@@ -32,7 +32,7 @@ void main() {
       when(mockGetTvRecommendations.execute(tId)).thenAnswer((_) async => Right(testTvList));
       return topRatedTvsBloc;
     },
-    act: (bloc) => bloc.add(FetchTvRecommendations(tId)),
+    act: (bloc) => bloc.add(const FetchTvRecommendations(tId)),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       TvRecommendationsLoading(),
@@ -49,7 +49,7 @@ void main() {
       when(mockGetTvRecommendations.execute(tId)).thenAnswer((_) async => const Right([]));
       return topRatedTvsBloc;
     },
-    act: (bloc) => bloc.add(FetchTvRecommendations(tId)),
+    act: (bloc) => bloc.add(const FetchTvRecommendations(tId)),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       TvRecommendationsLoading(),
@@ -66,11 +66,11 @@ void main() {
       when(mockGetTvRecommendations.execute(tId)).thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return topRatedTvsBloc;
     },
-    act: (bloc) => bloc.add(FetchTvRecommendations(tId)),
+    act: (bloc) => bloc.add(const FetchTvRecommendations(tId)),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       TvRecommendationsLoading(),
-      TvRecommendationsError('Server Failure'),
+      const TvRecommendationsError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockGetTvRecommendations.execute(tId));

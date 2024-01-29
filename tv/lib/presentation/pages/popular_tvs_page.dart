@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv/presentation/pages/bloc/popular/popular_tvs_bloc.dart';
 import 'package:tv/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class PopularTvsPage extends StatefulWidget {
   static const ROUTE_NAME = '/popular-tvs';

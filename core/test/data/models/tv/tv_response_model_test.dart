@@ -25,7 +25,7 @@ void main() {
       voteAverage: 6.37,
       voteCount: 27);
 
-  final tTvResponseModel = const TvResponse(tvList: <TvModel>[tTvModel]);
+  const tTvResponseModel = TvResponse(tvList: <TvModel>[tTvModel]);
 
   group('fromJson', () {
     test('should return a valid model from JSON', () async {

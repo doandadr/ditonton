@@ -44,7 +44,7 @@ void main() {
     'should emit [Loading, Empty] when data is empty',
     build: () {
       when(mockGetNowPlayingMovies.execute())
-          .thenAnswer((_) async => Right([]));
+          .thenAnswer((_) async => const Right([]));
       return nowPlayingMoviesBloc;
     },
     act: (bloc) => bloc.add(FetchNowPlayingMovies()),
@@ -60,14 +60,14 @@ void main() {
     'should emit [Loading, Error] when get now playing movies is unsuccessful',
     build: () {
       when(mockGetNowPlayingMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return nowPlayingMoviesBloc;
     },
     act: (bloc) => bloc.add(FetchNowPlayingMovies()),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       NowPlayingMoviesLoading(),
-      NowPlayingMoviesError('Server Failure'),
+      const NowPlayingMoviesError('Server Failure'),
     ],
     verify: (bloc) => verify(mockGetNowPlayingMovies.execute()),
   );

@@ -32,7 +32,7 @@ void main() {
       when(mockGetMovieRecommendations.execute(tId)).thenAnswer((_) async => Right(testMovieList));
       return topRatedMoviesBloc;
     },
-    act: (bloc) => bloc.add(FetchMovieRecommendations(tId)),
+    act: (bloc) => bloc.add(const FetchMovieRecommendations(tId)),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       MovieRecommendationsLoading(),
@@ -49,7 +49,7 @@ void main() {
       when(mockGetMovieRecommendations.execute(tId)).thenAnswer((_) async => const Right([]));
       return topRatedMoviesBloc;
     },
-    act: (bloc) => bloc.add(FetchMovieRecommendations(tId)),
+    act: (bloc) => bloc.add(const FetchMovieRecommendations(tId)),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       MovieRecommendationsLoading(),
@@ -66,11 +66,11 @@ void main() {
       when(mockGetMovieRecommendations.execute(tId)).thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return topRatedMoviesBloc;
     },
-    act: (bloc) => bloc.add(FetchMovieRecommendations(tId)),
+    act: (bloc) => bloc.add(const FetchMovieRecommendations(tId)),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       MovieRecommendationsLoading(),
-      MovieRecommendationsError('Server Failure'),
+      const MovieRecommendationsError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockGetMovieRecommendations.execute(tId));

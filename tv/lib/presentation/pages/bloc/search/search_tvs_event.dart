@@ -7,7 +7,7 @@ abstract class SearchTvsEvent extends Equatable {
 class OnQueryChanged extends SearchTvsEvent {
   final String query;
 
-  OnQueryChanged(this.query);
+  const OnQueryChanged(this.query);
 
   @override
   List<Object?> get props => [query];
