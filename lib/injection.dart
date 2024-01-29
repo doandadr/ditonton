@@ -7,6 +7,7 @@ import 'package:core/data/repositories/movie/movie_repository_impl.dart';
 import 'package:core/data/repositories/tv/tv_repository_impl.dart';
 import 'package:core/domain/repositories/movie/movie_repository.dart';
 import 'package:core/domain/repositories/tv/tv_repository.dart';
+import 'package:core/utils/http_ssl_pinning.dart';
 import 'package:movie/domain/usecases/get_movie_detail.dart';
 import 'package:movie/domain/usecases/get_movie_recommendations.dart';
 import 'package:movie/domain/usecases/get_now_playing_movies.dart';
@@ -16,10 +17,13 @@ import 'package:movie/domain/usecases/get_watchlist_movies.dart';
 import 'package:movie/domain/usecases/get_watchlist_status.dart' as MovieGWS;
 import 'package:movie/domain/usecases/remove_watchlist.dart' as MovieRW;
 import 'package:movie/domain/usecases/save_watchlist.dart' as MovieSW;
+import 'package:movie/presentation/pages/bloc/detail/movie_detail_bloc.dart';
 import 'package:movie/presentation/pages/bloc/now_playing/now_playing_movies_bloc.dart';
 import 'package:movie/presentation/pages/bloc/popular/popular_movies_bloc.dart';
+import 'package:movie/presentation/pages/bloc/recommendations/movie_recommendations_bloc.dart';
 import 'package:movie/presentation/pages/bloc/search/search_movies_bloc.dart';
 import 'package:movie/presentation/pages/bloc/top_rated/top_rated_movies_bloc.dart';
+import 'package:movie/presentation/pages/bloc/watchlist/movie_watchlist_bloc.dart';
 import 'package:tv/domain/usecases/get_on_the_air_tvs.dart';
 import 'package:tv/domain/usecases/get_popular_tvs.dart';
 import 'package:tv/domain/usecases/get_top_rated_tvs.dart';
@@ -31,20 +35,14 @@ import 'package:tv/domain/usecases/remove_watchlist.dart' as TvRW;
 import 'package:tv/domain/usecases/save_watchlist.dart' as TvSW;
 import 'package:movie/domain/usecases/search_movies.dart';
 import 'package:tv/domain/usecases/search_tvs.dart';
-import 'package:movie/presentation/provider/movie_detail_notifier.dart';
-import 'package:movie/presentation/provider/movie_list_notifier.dart';
-import 'package:movie/presentation/provider/popular_movies_notifier.dart';
-import 'package:movie/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:movie/presentation/provider/watchlist_movie_notifier.dart';
-import 'package:tv/presentation/pages/bloc/search_tvs_bloc.dart';
-import 'package:tv/presentation/provider/on_the_air_tvs_notifier.dart';
-import 'package:tv/presentation/provider/popular_tvs_notifier.dart';
-import 'package:tv/presentation/provider/top_rated_tvs_notifier.dart';
-import 'package:tv/presentation/provider/tv_detail_notifier.dart';
-import 'package:tv/presentation/provider/tv_list_notifier.dart';
-import 'package:tv/presentation/provider/watchlist_tv_notifier.dart';
-import 'package:http/http.dart' as http;
+import 'package:tv/presentation/pages/bloc/detail/tv_detail_bloc.dart';
+import 'package:tv/presentation/pages/bloc/on_the_air/on_the_air_tvs_bloc.dart';
+import 'package:tv/presentation/pages/bloc/popular/popular_tvs_bloc.dart';
+import 'package:tv/presentation/pages/bloc/recommendations/tv_recommendations_bloc.dart';
+import 'package:tv/presentation/pages/bloc/search/search_tvs_bloc.dart';
+import 'package:tv/presentation/pages/bloc/top_rated/top_rated_tvs_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:tv/presentation/pages/bloc/watchlist/tv_watchlist_bloc.dart';
 
 final locator = GetIt.instance;
 
@@ -52,20 +50,22 @@ void init() {
   // PROVIDER
   // movie
   locator.registerFactory(
-    () => MovieListNotifier(
-      getNowPlayingMovies: locator(),
-      getPopularMovies: locator(),
-      getTopRatedMovies: locator(),
+    () => MovieDetailBloc(
+      getMovieDetail: locator(),
     ),
   );
   locator.registerFactory(
-    () => MovieDetailNotifier(
-      getMovieDetail: locator(),
+    () => MovieRecommendationsBloc(
       getMovieRecommendations: locator(),
-      getWatchListStatus: locator(),
-      saveWatchlist: locator(),
-      removeWatchlist: locator(),
     ),
+  );
+  locator.registerFactory(
+      () => MovieWatchlistBloc(
+        saveWatchlist: locator(),
+        removeWatchlist: locator(),
+        getWatchListStatus: locator(),
+        getWatchlistMovies: locator(),
+      )
   );
   locator.registerFactory(
     () => NowPlayingMoviesBloc(
@@ -83,11 +83,6 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => WatchlistMovieNotifier(
-      getWatchlistMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
     () => SearchMoviesBloc(
       locator(),
     ),
@@ -95,39 +90,36 @@ void init() {
 
   // TV
   locator.registerFactory(
-    () => TvListNotifier(
-      getOnTheAirTvs: locator(),
-      getPopularTvs: locator(),
-      getTopRatedTvs: locator(),
+    () => TvDetailBloc(
+      getTvDetail: locator(),
     ),
   );
   locator.registerFactory(
-    () => TvDetailNotifier(
-      getTvDetail: locator(),
+    () => TvRecommendationsBloc(
       getTvRecommendations: locator(),
-      getWatchListStatus: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvWatchlistBloc(
       saveWatchlist: locator(),
       removeWatchlist: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => OnTheAirTvsNotifier(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => PopularTvsNotifier(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TopRatedTvsNotifier(
-      getTopRatedTvs: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => WatchlistTvNotifier(
+      getWatchListStatus: locator(),
       getWatchlistTvs: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => OnTheAirTvsBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => PopularTvsBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TopRatedTvsBloc(
+      locator(),
     ),
   );
   locator.registerFactory(
@@ -192,5 +184,5 @@ void init() {
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   // EXTERNAL
-  locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton(() => HttpSSLPinning.client);
 }

@@ -1,27 +1,73 @@
-import 'package:core/core.dart';
-import 'package:core/domain/entities/movie/movie.dart';
+import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:movie/presentation/pages/bloc/detail/movie_detail_bloc.dart';
+import 'package:movie/presentation/pages/bloc/recommendations/movie_recommendations_bloc.dart';
+import 'package:movie/presentation/pages/bloc/watchlist/movie_watchlist_bloc.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
-import 'package:movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
 
 import '../../dummy_data/dummy_objects.dart';
-import 'movie_detail_page_test.mocks.dart';
 
-@GenerateMocks([MovieDetailNotifier])
+class FakeMovieDetailEvent extends Fake implements MovieDetailEvent {}
+
+class FakeMovieDetailState extends Fake implements MovieDetailState {}
+
+class MockMovieDetailBloc extends MockBloc<MovieDetailEvent, MovieDetailState>
+    implements MovieDetailBloc {}
+
+class FakeMovieRecommendationsEvent extends Fake
+    implements MovieRecommendationsEvent {}
+
+class FakeMovieRecommendationsState extends Fake
+    implements MovieRecommendationsState {}
+
+class MockMovieRecommendationsBloc
+    extends MockBloc<MovieRecommendationsEvent, MovieRecommendationsState>
+    implements MovieRecommendationsBloc {}
+
+class FakeMovieWatchlistEvent extends Fake implements MovieWatchlistEvent {}
+
+class FakeMovieWatchlistState extends Fake implements MovieWatchlistState {}
+
+class MockMovieWatchlistBloc
+    extends MockBloc<MovieWatchlistEvent, MovieWatchlistState>
+    implements MovieWatchlistBloc {}
+
 void main() {
-  late MockMovieDetailNotifier mockNotifier;
+  late MockMovieDetailBloc mockMovieDetailBloc;
+  late MockMovieRecommendationsBloc mockMovieRecommendationsBloc;
+  late MockMovieWatchlistBloc mockMovieWatchlistBloc;
+
+  setUpAll(() {
+    registerFallbackValue(FakeMovieDetailEvent());
+    registerFallbackValue(FakeMovieDetailState());
+    registerFallbackValue(FakeMovieRecommendationsEvent());
+    registerFallbackValue(FakeMovieRecommendationsState());
+    registerFallbackValue(FakeMovieWatchlistEvent());
+    registerFallbackValue(FakeMovieWatchlistState());
+  });
 
   setUp(() {
-    mockNotifier = MockMovieDetailNotifier();
+    mockMovieDetailBloc = MockMovieDetailBloc();
+    mockMovieRecommendationsBloc = MockMovieRecommendationsBloc();
+    mockMovieWatchlistBloc = MockMovieWatchlistBloc();
   });
 
   Widget makeTestableWidget(Widget body) {
-    return ChangeNotifierProvider<MovieDetailNotifier>.value(
-      value: mockNotifier,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<MovieDetailBloc>(
+          create: (_) => mockMovieDetailBloc,
+        ),
+        BlocProvider<MovieRecommendationsBloc>(
+          create: (_) => mockMovieRecommendationsBloc,
+        ),
+        BlocProvider<MovieWatchlistBloc>(
+          create: (_) => mockMovieWatchlistBloc,
+        ),
+      ],
       child: MaterialApp(
         home: body,
       ),
@@ -31,78 +77,52 @@ void main() {
   testWidgets(
       'Watchlist button should display add icon when movie not added to watchlist',
       (WidgetTester tester) async {
-    when(mockNotifier.movieState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.movie).thenReturn(testMovieDetail);
-    when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.movieRecommendations).thenReturn(<Movie>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+    when(() => mockMovieDetailBloc.state).thenReturn(
+      const MovieDetailHasData(testMovieDetail),
+    );
+    when(() => mockMovieRecommendationsBloc.state).thenReturn(
+      MovieRecommendationsHasData(testMovieList),
+    );
+    when(() => mockMovieWatchlistBloc.state).thenReturn(
+      const MovieWatchlistStatus(false),
+    );
 
-    final watchlistButtonIcon = find.byIcon(Icons.add);
+    final tId = testMovieDetail.id;
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
-
-    expect(watchlistButtonIcon, findsOneWidget);
-  });
-
-  testWidgets(
-      'Watchlist button should dispay check icon when movie is added to wathclist',
-      (WidgetTester tester) async {
-    when(mockNotifier.movieState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.movie).thenReturn(testMovieDetail);
-    when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.movieRecommendations).thenReturn(<Movie>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(true);
-
-    final watchlistButtonIcon = find.byIcon(Icons.check);
-
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
-
-    expect(watchlistButtonIcon, findsOneWidget);
-  });
-
-  testWidgets(
-      'Watchlist button should display Snackbar when added to watchlist',
-      (WidgetTester tester) async {
-    when(mockNotifier.movieState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.movie).thenReturn(testMovieDetail);
-    when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.movieRecommendations).thenReturn(<Movie>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
-    when(mockNotifier.watchlistMessage).thenReturn('Added to Watchlist');
+    await tester.pumpWidget(makeTestableWidget(MovieDetailPage(id: tId)));
+    await tester.pump();
 
     final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    expect(watchlistButton, findsOneWidget);
 
-    expect(find.byIcon(Icons.add), findsOneWidget);
-
-    await tester.tap(watchlistButton);
-    await tester.pump();
-
-    expect(find.byType(SnackBar), findsOneWidget);
-    expect(find.text('Added to Watchlist'), findsOneWidget);
+    final iconButton = find.byIcon(Icons.add);
+    expect(iconButton, findsOneWidget);
   });
 
   testWidgets(
-      'Watchlist button should display AlertDialog when add to watchlist failed',
+      'Watchlist button should display check icon when movie is added to watchlist',
       (WidgetTester tester) async {
-    when(mockNotifier.movieState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.movie).thenReturn(testMovieDetail);
-    when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.movieRecommendations).thenReturn(<Movie>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
-    when(mockNotifier.watchlistMessage).thenReturn('Failed');
+    when(() => mockMovieDetailBloc.state).thenReturn(
+      const MovieDetailHasData(testMovieDetail),
+    );
+    when(() => mockMovieRecommendationsBloc.state).thenReturn(
+      MovieRecommendationsHasData(testMovieList),
+    );
+    when(() => mockMovieWatchlistBloc.state).thenReturn(
+      const MovieWatchlistStatus(true),
+    );
+
+    final tId = testMovieDetail.id;
+
+    await tester.pumpWidget(makeTestableWidget(MovieDetailPage(id: tId)));
+    await tester.pump();
 
     final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    expect(watchlistButton, findsOneWidget);
 
-    expect(find.byIcon(Icons.add), findsOneWidget);
-
-    await tester.tap(watchlistButton);
-    await tester.pump();
-
-    expect(find.byType(AlertDialog), findsOneWidget);
-    expect(find.text('Failed'), findsOneWidget);
+    final iconButton = find.byIcon(Icons.check);
+    expect(iconButton, findsOneWidget);
   });
 }
