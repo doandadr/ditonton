@@ -67,8 +67,8 @@ workflows:
 #      ios_signing:
 #        distribution_type: app_store
 #        bundle_identifier: com.doanda.ditonton
-#      vars:
-#        APP_ID: 1111111111 # <-- Put your APP ID here
+      vars:
+        APP_ID: 1111111111 # <-- Put your APP ID here
       flutter: stable
       xcode: latest # <-- set to specific version e.g. 14.3, 15.0 to avoid unexpected updates.
       cocoapods: default
