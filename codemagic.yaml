@@ -9,7 +9,7 @@ workflows:
       groups:
         - google_play # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS)
       vars:
-        PACKAGE_NAME: "com.doanda.ditonton" # <-- Put your package name here
+        PACKAGE_NAME: "io.codemagic.flutteryaml" # <-- Put your package name here
         GOOGLE_PLAY_TRACK: "alpha"
       flutter: stable
     scripts:
@@ -24,9 +24,7 @@ workflows:
           flutter analyze
       - name: Flutter unit tests
         script: |
-          flutter test core/test
-          flutter test movie/test
-          flutter test tv/test
+          flutter test
         ignore_failure: true
       - name: Build AAB with Flutter
         script: |
