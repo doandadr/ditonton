@@ -6,8 +6,8 @@ workflows:
     environment:
       android_signing:
         - keystore_reference
-      groups:
-        - google_play # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS)
+#      groups:
+#        - google_play # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS)
       vars:
         PACKAGE_NAME: "com.doanda.ditonton" # <-- Put your package name here
         GOOGLE_PLAY_TRACK: "alpha"
@@ -38,17 +38,17 @@ workflows:
       - build/**/outputs/**/*.aab
       - build/**/outputs/**/mapping.txt
       - flutter_drive.log
-    publishing:
-      email:
-        recipients:
-          - doanda.dev@gmail.com
-        notify:
-          success: true
-          failure: false
-      google_play:
-        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
-        track: $GOOGLE_PLAY_TRACK
-        submit_as_draft: true
+#    publishing:
+#      email:
+#        recipients:
+#          - doanda.dev@gmail.com
+#        notify:
+#          success: true
+#          failure: false
+#      google_play:
+#        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+#        track: $GOOGLE_PLAY_TRACK
+#        submit_as_draft: true
   ios-workflow:
     name: iOS Workflow
     instance_type: mac_mini_m1
