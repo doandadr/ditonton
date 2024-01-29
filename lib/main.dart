@@ -59,10 +59,12 @@ Future<void> main() async {
 
   di.init();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -121,22 +123,22 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: kRichBlack,
           textTheme: kTextTheme,
         ),
-        home: HomeMoviePage(),
+        home: const HomeMoviePage(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case aboutPageRoute:
-              return MaterialPageRoute(builder: (_) => AboutPage());
+              return MaterialPageRoute(builder: (_) => const AboutPage());
 
             // Movies
             case homeMoviePageRoute:
-              return MaterialPageRoute(builder: (_) => HomeMoviePage());
+              return MaterialPageRoute(builder: (_) => const HomeMoviePage());
             case nowPlayingMoviesPageRoute:
-              return CupertinoPageRoute(builder: (_) => NowPlayingMoviesPage());
+              return CupertinoPageRoute(builder: (_) => const NowPlayingMoviesPage());
             case popularMoviesPageRoute:
-              return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
+              return CupertinoPageRoute(builder: (_) => const PopularMoviesPage());
             case topRatedMoviesPageRoute:
-              return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
+              return CupertinoPageRoute(builder: (_) => const TopRatedMoviesPage());
             case movieDetailPageRoute:
               final id = settings.arguments as int;
               return MaterialPageRoute(
@@ -144,18 +146,18 @@ class MyApp extends StatelessWidget {
                 settings: settings,
               );
             case searchMoviesPageRoute:
-              return CupertinoPageRoute(builder: (_) => SearchMoviesPage());
+              return CupertinoPageRoute(builder: (_) => const SearchMoviesPage());
             case watchlistMoviesPageRoute:
-              return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
+              return MaterialPageRoute(builder: (_) => const WatchlistMoviesPage());
             // Tv
             case homeTvPageRoute:
-              return MaterialPageRoute(builder: (_) => HomeTvPage());
+              return MaterialPageRoute(builder: (_) => const HomeTvPage());
             case onTheAirTvsPageRoute:
-              return CupertinoPageRoute(builder: (_) => OnTheAirTvsPage());
+              return CupertinoPageRoute(builder: (_) => const OnTheAirTvsPage());
             case popularTvsPageRoute:
-              return CupertinoPageRoute(builder: (_) => PopularTvsPage());
+              return CupertinoPageRoute(builder: (_) => const PopularTvsPage());
             case topRatedTvsPageRoute:
-              return CupertinoPageRoute(builder: (_) => TopRatedTvsPage());
+              return CupertinoPageRoute(builder: (_) => const TopRatedTvsPage());
             case tvDetailPageRoute:
               final id = settings.arguments as int;
               return MaterialPageRoute(
@@ -163,12 +165,12 @@ class MyApp extends StatelessWidget {
                 settings: settings,
               );
             case searchTvsPageRoute:
-              return CupertinoPageRoute(builder: (_) => SearchTvsPage());
+              return CupertinoPageRoute(builder: (_) => const SearchTvsPage());
             case watchlistTvsPageRoute:
-              return MaterialPageRoute(builder: (_) => WatchlistTvsPage());
+              return MaterialPageRoute(builder: (_) => const WatchlistTvsPage());
             default:
               return MaterialPageRoute(builder: (_) {
-                return Scaffold(
+                return const Scaffold(
                   body: Center(
                     child: Text('Page not found :('),
                   ),

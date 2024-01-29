@@ -6,7 +6,6 @@ import 'package:movie/presentation/pages/bloc/now_playing/now_playing_movies_blo
 import 'package:movie/presentation/pages/bloc/popular/popular_movies_bloc.dart';
 import 'package:movie/presentation/pages/bloc/top_rated/top_rated_movies_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HomeMoviePage extends StatefulWidget {
   static const ROUTE_NAME = '/home-movie';

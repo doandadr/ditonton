@@ -68,7 +68,7 @@ void main() {
     wait: const Duration(milliseconds: 100),
     expect: () => [
       TopRatedMoviesLoading(),
-      TopRatedMoviesError('Server Failure'),
+      const TopRatedMoviesError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockGetTopRatedMovies.execute());

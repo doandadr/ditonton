@@ -24,7 +24,7 @@ void main() {
     expect(searchBloc.state, SearchEmpty());
   });
 
-  final testQuery = 'spiderman';
+  const testQuery = 'spiderman';
 
   blocTest<SearchMoviesBloc, SearchMoviesState>(
     'should emit [Loading, HasData] when data is gotten successfully',
@@ -33,7 +33,7 @@ void main() {
           .thenAnswer((_) async => Right(testMovieList));
       return searchBloc;
     },
-    act: (bloc) => bloc.add(OnQueryChanged(testQuery)),
+    act: (bloc) => bloc.add(const OnQueryChanged(testQuery)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
       SearchLoading(),
@@ -48,14 +48,14 @@ void main() {
     'should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockSearchMovies.execute(testQuery))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return searchBloc;
     },
-    act: (bloc) => bloc.add(OnQueryChanged(testQuery)),
+    act: (bloc) => bloc.add(const OnQueryChanged(testQuery)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
       SearchLoading(),
-      SearchError('Server Failure'),
+      const SearchError('Server Failure'),
     ],
     verify: (bloc) {
       verify(mockSearchMovies.execute(testQuery));
