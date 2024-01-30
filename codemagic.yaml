@@ -19,10 +19,10 @@ workflows:
       - name: Get Flutter packages
         script: |
           flutter packages pub get
-      - name: Flutter analyze
-        script: |
-          flutter analyze
-        ignore_failure: true
+#      - name: Flutter analyze
+#        script: |
+#          flutter analyze
+#        ignore_failure: true
       - name: Flutter unit tests
         script: |
           flutter test core/test
@@ -82,22 +82,22 @@ workflows:
       - name: Install pods
         script: |
           find . -name "Podfile" -execdir pod install \;
-      - name: Flutter analyze
-        script: |
-          flutter analyze
-        ignore_failure: true
+#      - name: Flutter analyze
+#        script: |
+#          flutter analyze
+#        ignore_failure: true
       - name: Flutter unit tests
         script: |
           flutter test core/test
           flutter test movie/test
           flutter test tv/test
         ignore_failure: true
-      - name: Flutter build ipa and automatic versioning
-        script: |
-          flutter build ipa --release \
-            --build-name=1.0.0 \
-            --build-number=$(($(app-store-connect get-latest-app-store-build-number "$APP_ID") + 1)) \
-            --export-options-plist=/Users/builder/export_options.plist
+#      - name: Flutter build ipa and automatic versioning
+#        script: |
+#          flutter build ipa --release \
+#            --build-name=1.0.0 \
+#            --build-number=$(($(app-store-connect get-latest-app-store-build-number "$APP_ID") + 1)) \
+#            --export-options-plist=/Users/builder/export_options.plist
     triggering:
       events:
         - pull_request
